@@ -1,0 +1,27 @@
+@import "./colors.scss";
+@import "./shared/Header/header.scss";
+
+@font-face {
+  font-family: "Vinque";
+  src: url("./fonts/vinque.ttf");
+}
+
+@font-face {
+  font-family: "DSEtienne";
+  src: url("./fonts/vinque.ttf");
+}
+
+body {
+  margin: 0;
+  background-color: $bg-color;
+
+  width: 100vw;
+  height: 100vh;
+
+  color: $primary-color;
+}
+
+.app {
+  display: flex;
+  flex-flow: column nowrap;
+}

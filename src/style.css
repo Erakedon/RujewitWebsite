@@ -1,0 +1,33 @@
+.headerLogo {
+  background-image: url("./shared/Header/logo.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 25vw;
+}
+
+svg {
+  fill: orange;
+}
+
+@font-face {
+  font-family: "Vinque";
+  src: url("./fonts/vinque.ttf");
+}
+@font-face {
+  font-family: "DSEtienne";
+  src: url("./fonts/vinque.ttf");
+}
+body {
+  margin: 0;
+  background-color: #d1ab69;
+  width: 100vw;
+  height: 100vh;
+  color: #351800;
+}
+
+.app {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+/*# sourceMappingURL=style.css.map */
