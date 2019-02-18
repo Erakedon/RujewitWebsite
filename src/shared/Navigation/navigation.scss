@@ -102,7 +102,7 @@ $nav-stroke-width: 3;
 
 }
 
-.Nav.active {
+.Nav.active, .collapsed .Nav {
 
 
     .menuBtn.btnOff {
@@ -124,5 +124,18 @@ $nav-stroke-width: 3;
         path:nth-of-type(2) {transition-delay: 0.05s}
         path:nth-of-type(3) {transition-delay: 0.1s}
         path:nth-of-type(4) {transition-delay: 0.15s}
+    }
+}
+
+
+.collapsed {
+    .Nav {
+
+
+
+
+
+
+
     }
 }

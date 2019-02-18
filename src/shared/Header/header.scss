@@ -32,9 +32,6 @@
       }
     }
 
-    .logo:hover {
-      height: 15vw;
-    }
   }
 
   .backgroundPart {
@@ -45,3 +42,10 @@
 }
 
 
+.Header.collapsed {
+
+  .logo {
+    height: 15vw;
+  }
+
+}

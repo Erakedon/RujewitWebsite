@@ -31,7 +31,7 @@ class Navigation extends Component {
                 <div className="text">Menu</div>
             </div>
             <div className="menuBtn btnOn" onClick={() => {this.setNavState(false)}}>
-                <div className="text"><i class="fas fa-undo"></i></div>
+                <div className="text"><i className="fas fa-undo"></i></div>
             </div>
             <NavBtns className="navBtns" />
         </div>
