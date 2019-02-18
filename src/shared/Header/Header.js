@@ -1,25 +1,18 @@
 import React from "react";
-// import logo from "./logo.svg";
-import { ReactComponent as Logo } from './logoMin.svg';
-// import { ReactSVG } from 'react-svg';
-// import { render } from 'react-dom'
-// import ReactSVG from "react-svg";
-// import PropTypes from 'prop-types';
-// import ReactDOMServer from 'react-dom-server';
+import { ReactComponent as Logo } from './logo.svg';
+import Navigation from "../Navigation/Navigation";
+
+
 
 const header = () => {
   return (
     <div className="Header">
-      {/* <div className="headerLogo"></div> */}
+      <div className="floatingPart">
+      <Logo className="logo" />
+      <Navigation />
 
-      {/* <Logo></Logo> */}
-      {/* <svg src={Logo} /> */}
-      {/* <svg src={logo} alt="Logo"/> */}
-
-
-      <Logo />
-
-    {/* <ReactSVG src="logo.Min.svg"></ReactSVG> */}
+      </div>
+      <div className="backgroundPart"></div>
 
     </div>
   );

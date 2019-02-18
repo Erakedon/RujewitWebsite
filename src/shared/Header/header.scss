@@ -1,12 +1,47 @@
 .headerLogo {
-    background-image: url("./shared/Header/logo.svg");
-    background-repeat: no-repeat;
-    background-size: contain;
-    height: 25vw;
-    // width: 56vw;
-    
+  background-image: url("./shared/Header/logo.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 25vw;
+  // width: 56vw;
 }
 
-svg {
-    fill: orange;
+.Header {
+  .floatingPart {
+    position: fixed;
+
+        width: 100%;
+
+    .logo {
+      fill: orange;
+
+      height: 25vw;
+
+      transition: 1s ease;
+
+      .mainLogoText {
+        fill: green;
+      }
+
+      .logoWings {
+        fill: red;
+      }
+
+      text {
+        fill: blue;
+      }
+    }
+
+    .logo:hover {
+      height: 15vw;
+    }
+  }
+
+  .backgroundPart {
+      height: 25vw
+  }
+
+
 }
+
+

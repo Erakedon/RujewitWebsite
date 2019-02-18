@@ -1,5 +1,7 @@
 @import "./colors.scss";
+@import "./pages/MainPage/mainPage.scss";
 @import "./shared/Header/header.scss";
+@import "./shared/Navigation/navigation.scss";
 
 @font-face {
   font-family: "Vinque";
@@ -18,10 +20,16 @@ body {
   width: 100vw;
   height: 100vh;
 
-  color: $primary-color;
+  color: $primary;
+
+  overflow-x: hidden;
 }
 
 .app {
   display: flex;
   flex-flow: column nowrap;
+}
+
+.page {
+  width: 100%;
 }

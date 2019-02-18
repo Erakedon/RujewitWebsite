@@ -1,3 +1,7 @@
+.MainPage {
+  height: 200vh;
+}
+
 .headerLogo {
   background-image: url("./shared/Header/logo.svg");
   background-repeat: no-repeat;
@@ -5,8 +9,124 @@
   height: 25vw;
 }
 
-svg {
+.Header .floatingPart {
+  position: fixed;
+  width: 100%;
+}
+.Header .floatingPart .logo {
   fill: orange;
+  height: 25vw;
+  transition: 1s ease;
+}
+.Header .floatingPart .logo .mainLogoText {
+  fill: green;
+}
+.Header .floatingPart .logo .logoWings {
+  fill: red;
+}
+.Header .floatingPart .logo text {
+  fill: blue;
+}
+.Header .floatingPart .logo:hover {
+  height: 15vw;
+}
+.Header .backgroundPart {
+  height: 25vw;
+}
+
+.Nav {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 120px;
+  height: 120px;
+}
+.Nav .menuBtn {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  width: 110px;
+  height: 110px;
+  border-bottom-left-radius: 100%;
+  cursor: pointer;
+  transform-origin: 100% 0%;
+  transition: 0.3s ease-in-out;
+  z-index: 20;
+}
+.Nav .menuBtn .text {
+  font-family: Vinque;
+  color: #d39326;
+  font-size: 2em;
+  margin-top: 25%;
+  transform: rotateZ(45deg) translate(10px, -10px);
+}
+.Nav .menuBtn.btnOn {
+  background-color: #351800;
+  border: 3px solid #d39326;
+  transform: rotateZ(-90deg);
+}
+.Nav .menuBtn.btnOff {
+  background-color: #bd8422;
+  border: 3px solid #351800;
+  transform: rotateZ(0deg);
+}
+.Nav .menuBtn.btnOff .text {
+  color: #351800;
+}
+.Nav .navBtns {
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  fill: #351800;
+  height: 280%;
+  transform-origin: 0px 0px;
+  transition: 0.5s ease-in-out;
+  z-index: 10;
+}
+.Nav .navBtns path {
+  stroke: #d39326;
+  stroke-width: 0.33;
+  transform: rotateZ(-90deg);
+  transform-origin: 135px 115px;
+  transition: 0.5s ease-in-out;
+}
+.Nav .navBtns path:nth-of-type(1) {
+  transition-delay: 0.15s;
+}
+.Nav .navBtns path:nth-of-type(2) {
+  transition-delay: 0.1s;
+}
+.Nav .navBtns path:nth-of-type(3) {
+  transition-delay: 0.05s;
+}
+.Nav .navBtns path:nth-of-type(4) {
+  transition-delay: 0s;
+}
+
+.Nav.active .menuBtn.btnOff {
+  transform: rotateZ(90deg);
+}
+.Nav.active .menuBtn.btnOn {
+  transform: rotateZ(0deg);
+}
+.Nav.active .navBtns path {
+  transform: rotateZ(0deg);
+}
+.Nav.active .navBtns path:nth-of-type(1) {
+  transition-delay: 0s;
+}
+.Nav.active .navBtns path:nth-of-type(2) {
+  transition-delay: 0.05s;
+}
+.Nav.active .navBtns path:nth-of-type(3) {
+  transition-delay: 0.1s;
+}
+.Nav.active .navBtns path:nth-of-type(4) {
+  transition-delay: 0.15s;
 }
 
 @font-face {
@@ -23,11 +143,16 @@ body {
   width: 100vw;
   height: 100vh;
   color: #351800;
+  overflow-x: hidden;
 }
 
 .app {
   display: flex;
   flex-flow: column nowrap;
+}
+
+.page {
+  width: 100%;
 }
 
 /*# sourceMappingURL=style.css.map */
