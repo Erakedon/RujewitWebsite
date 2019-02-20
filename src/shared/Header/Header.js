@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { ReactComponent as Logo } from "./logo.svg";
 import Navigation from "../Navigation/Navigation";
+import HeaderBg from "./HeaderBg/HeaderBg";
 // import * as Scroll from "react-scroll";
 
 class Header extends Component {
 
   state = {
-    headerCollapsed: false
+    headerNotCollapsed: true
   }
 
   componentDidMount = () => {
@@ -14,39 +15,31 @@ class Header extends Component {
     document.addEventListener("scroll", (ev) => {
       // console.log(ev);
       // console.log(document.querySelector(".floatingPart").scrollTop);
-      console.log(window.scrollY);
-      if(window.scrollY > 100 && !this.state.headerCollapsed)
+      if(window.scrollY > 50 && this.state.headerNotCollapsed)
       {
         console.log("changing state to true");
-        this.setHeaderState(true);
+        this.setHeaderState(false);
       }
-      else if(window.scrollY < 100 && this.state.headerCollapsed)
+      else if(window.scrollY < 50 && !this.state.headerNotCollapsed)
       {
         console.log("changing state to false");
-        this.setHeaderState(false);
+        this.setHeaderState(true);
       }
 
     });
-
-  // Scroll.Events.scrollEvent.register('begin',(to,element) => {
-  //   console.log("begin",element);
-  // });
-
-  // Scroll.Events.scrollEvent.register('end', () => {
-  //   console.log("scroll");
-  // });
 }
 
   setHeaderState = (bool) => {
-    this.setState({headerCollapsed: bool});
+    this.setState({headerNotCollapsed: bool});
   }
 
   render() {
     return (
-      <div className={this.state.headerCollapsed ? "Header collapsed" : "Header"}>
+      <div className={this.state.headerNotCollapsed ? "Header notCollapsed" : "Header"}>
         <div className="floatingPart">
           <Logo className="logo" />
-          <Navigation />
+          <Navigation headerNotCollapsed={this.state.headerNotCollapsed} />
+          <HeaderBg />
         </div>
         <div className="backgroundPart" />
       </div>

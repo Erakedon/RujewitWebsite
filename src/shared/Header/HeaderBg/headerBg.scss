@@ -1,0 +1,49 @@
+.HeaderBg {
+    position: absolute;
+    left: 0px;
+    bottom: -5px;
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-end;
+    justify-content: flex-start;
+
+    border-bottom: 5px solid $bg-color;
+
+    z-index: 10;
+
+    svg {
+        fill: $bg-color;
+
+
+        transition: 0.5s ease 0s;
+    }
+    .leftover1 {
+        height: 40%;
+    }
+    .leftover2 {
+        height: 15%;
+    }
+    .leftover3 {
+        height: 15%;
+    }
+    .leftover4 {
+        height: 65%;
+    }
+
+    .leftoverSpace {
+        height: 3.5%;
+        width: 5%;
+        background-color: $bg-color;
+
+    }
+
+}
+
+// .notCollapsed .HeaderBg {
+//   svg {
+//     height: 40px;
+//   }
+// }

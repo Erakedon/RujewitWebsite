@@ -9,43 +9,64 @@
 .Header {
   .floatingPart {
     position: fixed;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
 
-        width: 100%;
+    // background-color: rgba(255,255,255,0.2);
+    // background-color: #20160c;
+    // background-image: linear-gradient(to bottom,#383250, #383250, #383250, rgba(0,0,0,0));
+    background-color: #2d5281;
+
+
+    width: 100%;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+        
 
     .logo {
-      fill: orange;
+      fill: $secondary-intense;
 
-      height: 25vw;
+      height: 6vw;
+      
+      z-index: 60;
 
       transition: 1s ease;
 
-      .mainLogoText {
-        fill: green;
-      }
+      // .mainLogoText {
+      //   fill: $secondary;
+      // }
 
-      .logoWings {
-        fill: red;
-      }
+      // .logoWings {
+      //   fill: $secondary;
+      // }
 
-      text {
-        fill: blue;
-      }
+      // text {
+      //   fill: $secondary;
+      // }
     }
 
   }
 
   .backgroundPart {
-      height: 25vw
+      height: 35vw;
+    //  background-color: #383250;
+    // background-image: linear-gradient(to bottom,#383250, #383250, #383250, rgba(0,0,0,0));
+
+
   }
 
 
 }
 
 
-.Header.collapsed {
+.Header.notCollapsed {
 
   .logo {
-    height: 15vw;
+    height: 20vw;
   }
 
 }

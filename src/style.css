@@ -1,4 +1,7 @@
 .MainPage {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
   height: 200vh;
 }
 
@@ -11,28 +14,62 @@
 
 .Header .floatingPart {
   position: fixed;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #2d5281;
   width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
 }
 .Header .floatingPart .logo {
-  fill: orange;
-  height: 25vw;
+  fill: #db9f37;
+  height: 6vw;
+  z-index: 60;
   transition: 1s ease;
 }
-.Header .floatingPart .logo .mainLogoText {
-  fill: green;
-}
-.Header .floatingPart .logo .logoWings {
-  fill: red;
-}
-.Header .floatingPart .logo text {
-  fill: blue;
-}
 .Header .backgroundPart {
-  height: 25vw;
+  height: 35vw;
 }
 
-.Header.collapsed .logo {
-  height: 15vw;
+.Header.notCollapsed .logo {
+  height: 20vw;
+}
+
+.HeaderBg {
+  position: absolute;
+  left: 0px;
+  bottom: -5px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-end;
+  justify-content: flex-start;
+  border-bottom: 5px solid #1f1938;
+  z-index: 10;
+}
+.HeaderBg svg {
+  fill: #1f1938;
+  transition: 0.5s ease 0s;
+}
+.HeaderBg .leftover1 {
+  height: 40%;
+}
+.HeaderBg .leftover2 {
+  height: 15%;
+}
+.HeaderBg .leftover3 {
+  height: 15%;
+}
+.HeaderBg .leftover4 {
+  height: 65%;
+}
+.HeaderBg .leftoverSpace {
+  height: 3.5%;
+  width: 5%;
+  background-color: #1f1938;
 }
 
 .Nav {
@@ -60,18 +97,18 @@
 }
 .Nav .menuBtn .text {
   font-family: Vinque;
-  color: #d39326;
-  font-size: 2em;
+  color: #c99131;
+  font-size: 1.5em;
   margin-top: 25%;
   transform: rotateZ(45deg) translate(10px, -10px);
 }
 .Nav .menuBtn.btnOn {
   background-color: #351800;
-  border: 3px solid #d39326;
-  transform: rotateZ(-90deg);
+  border: 3px solid #a07327;
+  transform: rotateZ(90deg);
 }
 .Nav .menuBtn.btnOff {
-  background-color: #bd8422;
+  background-color: #b4822c;
   border: 3px solid #351800;
   transform: rotateZ(0deg);
 }
@@ -88,46 +125,105 @@
   transition: 0.5s ease-in-out;
   z-index: 10;
 }
-.Nav .navBtns path {
-  stroke: #d39326;
-  stroke-width: 0.33;
+.Nav .navBtns #wing {
   transform: rotateZ(-90deg);
-  transform-origin: 135px 115px;
+  transform-origin: 100% 0%;
   transition: 0.5s ease-in-out;
+  cursor: pointer;
+  z-index: 10;
 }
-.Nav .navBtns path:nth-of-type(1) {
+.Nav .navBtns path {
+  stroke: #a07327;
+  stroke-width: 0.33;
+}
+.Nav .navBtns text {
+  fill: #c99131;
+  font-size: 2.3px;
+}
+.Nav .navBtns #wing:nth-of-type(1) text {
+  transform: rotate(2.5deg);
+}
+.Nav .navBtns #wing:nth-of-type(2) text {
+  transform: rotate(2deg);
+}
+.Nav .navBtns #wing:nth-of-type(3) text {
+  transform: rotate(0deg);
+}
+.Nav .navBtns #wing:nth-of-type(4) text {
+  transform: rotate(-3deg);
+}
+.Nav .navBtns #wing:nth-of-type(1) {
   transition-delay: 0.15s;
 }
-.Nav .navBtns path:nth-of-type(2) {
+.Nav .navBtns #wing:nth-of-type(2) {
   transition-delay: 0.1s;
 }
-.Nav .navBtns path:nth-of-type(3) {
+.Nav .navBtns #wing:nth-of-type(3) {
   transition-delay: 0.05s;
 }
-.Nav .navBtns path:nth-of-type(4) {
+.Nav .navBtns #wing:nth-of-type(4) {
   transition-delay: 0s;
 }
 
-.Nav.active .menuBtn.btnOff, .collapsed .Nav .menuBtn.btnOff {
-  transform: rotateZ(90deg);
+.Nav.active .navBtns #wing, .notCollapsed .Nav .navBtns #wing {
+  transform: rotateZ(-2deg);
 }
-.Nav.active .menuBtn.btnOn, .collapsed .Nav .menuBtn.btnOn {
-  transform: rotateZ(0deg);
+.Nav.active .navBtns #wing:hover, .notCollapsed .Nav .navBtns #wing:hover {
+  transform: rotateZ(-1deg) scale(1.05);
+  z-index: 15;
+  transition: 0.1s ease-out 0s;
 }
-.Nav.active .navBtns path, .collapsed .Nav .navBtns path {
-  transform: rotateZ(0deg);
-}
-.Nav.active .navBtns path:nth-of-type(1), .collapsed .Nav .navBtns path:nth-of-type(1) {
+.Nav.active .navBtns #wing:nth-of-type(1), .notCollapsed .Nav .navBtns #wing:nth-of-type(1) {
   transition-delay: 0s;
 }
-.Nav.active .navBtns path:nth-of-type(2), .collapsed .Nav .navBtns path:nth-of-type(2) {
+.Nav.active .navBtns #wing:nth-of-type(2), .notCollapsed .Nav .navBtns #wing:nth-of-type(2) {
   transition-delay: 0.05s;
 }
-.Nav.active .navBtns path:nth-of-type(3), .collapsed .Nav .navBtns path:nth-of-type(3) {
+.Nav.active .navBtns #wing:nth-of-type(3), .notCollapsed .Nav .navBtns #wing:nth-of-type(3) {
   transition-delay: 0.1s;
 }
-.Nav.active .navBtns path:nth-of-type(4), .collapsed .Nav .navBtns path:nth-of-type(4) {
+.Nav.active .navBtns #wing:nth-of-type(4), .notCollapsed .Nav .navBtns #wing:nth-of-type(4) {
   transition-delay: 0.15s;
+}
+
+.Nav.active .menuBtn.btnOff {
+  transform: rotateZ(-90deg);
+}
+.Nav.active .menuBtn.btnOn {
+  transform: rotateZ(0deg);
+}
+
+.Article {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  align-content: stretch;
+  width: 800px;
+  max-width: 90vw;
+  margin-bottom: 100px;
+}
+.Article .header {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: #331b07;
+  font-size: 1.5em;
+}
+.Article .pictureBox {
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: #b4822c;
+}
+.Article .content {
+  display: flex;
+  flex-flow: column nowrap;
+  font-family: DSEtienne;
+  background-color: #331b07;
+}
+.Article .content p {
+  margin: 20px;
 }
 
 @font-face {
@@ -140,10 +236,12 @@
 }
 body {
   margin: 0;
-  background-color: #d1ab69;
+  background-color: #1f1938;
   width: 100vw;
   height: 100vh;
-  color: #351800;
+  font-family: Vinque;
+  color: #cfbb97;
+  font-size: 20px;
   overflow-x: hidden;
 }
 

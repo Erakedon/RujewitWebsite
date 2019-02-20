@@ -1,3 +1,8 @@
 .MainPage {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+
+
     height: 200vh;
 }
