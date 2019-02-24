@@ -6,9 +6,18 @@ class MainPage extends Component {
     render() { 
         return ( 
             <div className="MainPage page">
-                <Article />
-                <Article />
-                <Article />
+                <Article imageId={0} />
+                <Article imageId={1} />
+                <Article imageId={2} />
+                <Article imageId={0} />
+                <Article imageId={1} />
+                <Article imageId={2} />
+                <Article imageId={0} />
+                <Article imageId={1} />
+                <Article imageId={2} />
+                <Article imageId={0} />
+                <Article imageId={1} />
+                <Article imageId={2} />
             </div>
          );
     }

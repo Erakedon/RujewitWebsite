@@ -24,19 +24,21 @@ class Article extends Component {
         axios.get("https://ruje-test.herokuapp.com/imgids")
         .then(res => {
             console.log(res);
-            const files = JSON.parse(res);
+            // const files = JSON.parse(res);
+            const files = res;
             console.log(files);
+            // imageToDownload.src = "https://drive.google.com/uc?export=view&sz=w400h400&id=" + files.data[1].id;
 
-        imageToDownload.src = "https://drive.google.com/uc?export=view&id=" + files[0].id;
+            imageToDownload.src = "https://drive.google.com/uc?export=view&id=" + files.data[this.props.imageId].id;
             
         });
 
         // imageToDownload.src = "https://drive.google.com/uc?export=view&id=0BwJwNmFwiZmYX0lKS3NHamZKZE8tbklmYkt2Yi12WGZ2MzI4";
     }
 
-    displayImg() {
-        return this.state.imageSource ? {display: "block"} : {display: "none"}
-    }
+    // displayImg() {
+    //     return this.state.imageSource ? {display: "block"} : {display: "none"}
+    // }
 
     render() { 
         return ( 
@@ -45,17 +47,16 @@ class Article extends Component {
                 <div className="pictureBox">
                     {/* {this.imageEl} */}
                     <img src={this.state.imageSource} 
-                    alt="Article picure" 
-                    style={this.state.imageSource ? {display: "block"} : {display: "none"}} 
+                    alt="Article picure"                     
                     />
-                    <div style={this.state.imageSource ? {display: "none"} : {display: "block"}}>Loading</div>
+                    <div className="imgCover"></div>
                 </div>
-                <div className="content">
+                {/* <div className="content">
                     <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, quasi. Fugiat soluta, vel reiciendis aliquam autem quos, nisi inventore architecto illum error delectus a ducimus beatae temporibus. Quaerat, magnam rem.
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus vero nihil, eveniet velit cumque ab quis hic id beatae, blanditiis in vitae atque ad deleniti minus voluptates, fugiat delectus ipsa!
                     </p>
-                </div>
+                </div> */}
             </div>
          );
     }

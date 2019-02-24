@@ -38,7 +38,7 @@ class Header extends Component {
       <div className={this.state.headerNotCollapsed ? "Header notCollapsed" : "Header"}>
         <div className="floatingPart">
           <Logo className="logo" />
-          <Navigation headerNotCollapsed={this.state.headerNotCollapsed} />
+          <Navigation headerPropsRef={this.props} headerNotCollapsed={this.state.headerNotCollapsed} />
           <HeaderBg />
         </div>
         <div className="backgroundPart" />

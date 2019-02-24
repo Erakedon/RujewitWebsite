@@ -1,8 +1,7 @@
 .MainPage {
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row wrap;
   align-items: center;
-  height: 200vh;
 }
 
 .headerLogo {
@@ -22,6 +21,7 @@
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
+  z-index: 100;
 }
 .Header .floatingPart .logo {
   fill: #db9f37;
@@ -78,6 +78,7 @@
   top: 0px;
   width: 120px;
   height: 120px;
+  z-index: 100;
 }
 .Nav .menuBtn {
   position: absolute;
@@ -198,9 +199,8 @@
   flex-flow: column nowrap;
   align-items: stretch;
   align-content: stretch;
-  width: 800px;
-  max-width: 90vw;
   margin-bottom: 100px;
+  z-index: 10;
 }
 .Article .header {
   display: flex;
@@ -208,13 +208,33 @@
   justify-content: center;
   align-items: center;
   padding: 10px;
-  background-color: #331b07;
   font-size: 1.5em;
 }
 .Article .pictureBox {
+  position: relative;
   display: flex;
   flex-flow: column nowrap;
-  background-color: #b4822c;
+  align-items: center;
+  justify-content: flex-start;
+  width: 60vw;
+  height: 60vw;
+  max-height: 350px;
+  max-width: 450px;
+  overflow: hidden;
+}
+.Article .pictureBox img {
+  width: 80%;
+  z-index: 10;
+}
+.Article .pictureBox .imgCover {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: #1f1938;
+  opacity: 0.7;
+  z-index: 15;
 }
 .Article .content {
   display: flex;

@@ -1,12 +1,42 @@
 import React from 'react';
-import { ReactComponent as NavBtns } from './navWings2.svg';
+import { ReactComponent as NavBtns } from './navWings.svg';
 import { Component } from 'react';
+// import { Redirect } from 'react-router';
+// import BrowserRouter 
 
 class Navigation extends Component {
 
     state = {
         navOn: false
     };
+
+    wingsReferences = [];
+    menuContent = {
+        displayName: [
+            "Strona Główna",
+            "Drużynnicy",
+            "Wyprawy",
+            "Kontakt"
+        ],
+        url: [
+            "/",
+            "teammates",
+            "travels",
+            "contact"
+        ]
+    };
+
+    componentDidMount() {
+        this.wingsReferences = document.querySelectorAll("#wing");
+
+        this.wingsReferences.forEach((w,i) => {
+            w.querySelector("text").innerHTML = this.menuContent.displayName[i];
+            w.querySelector("text").onclick = () => {this.redirectTo(this.menuContent.url[i])}; 
+            console.log(w.querySelector("text").onClick);
+        });
+        console.log(this.wingsReferences);
+
+    }
 
      setNavState = (bool) => {
         // NavEl.classList.add("active");
@@ -25,8 +55,15 @@ class Navigation extends Component {
         return "Nav";
     }
 
+    redirectTo(url) {
+        console.log("redirection");
+        this.props.headerPropsRef.history.push(url);
+        // this.props.historyRef.push("/kupa");
+    }
+
     render() {
         return (
+
         <div className={this.isNavActive()}>
             <div className="menuBtn btnOff" onClick={() => {this.setNavState(true)}}>
                 <div className="text">menu</div>
