@@ -3,6 +3,7 @@ import { Route, BrowserRouter } from "react-router-dom";
 import MainPage from "./pages/MainPage/MainPage";
 import Team from "./pages/Team/Team";
 import Header from "./shared/Header/Header";
+import Travels from './pages/Travels/Travels';
 import "./style.css";
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
         <div className="App">
           <Route path="/" component={Header} />
           <Route path="/team" exact component={Team} />
+          <Route path="/travels" exact component={Travels} />
           <Route path="/" exact component={MainPage} />
         </div>
       </BrowserRouter>

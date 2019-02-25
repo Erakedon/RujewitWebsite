@@ -246,6 +246,13 @@
   margin: 20px;
 }
 
+.ArticleDisplay {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-around;
+}
+
 @font-face {
   font-family: "Vinque";
   src: url("./fonts/vinque.ttf");

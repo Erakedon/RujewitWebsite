@@ -3,7 +3,8 @@ import axios from 'axios';
 
 class Article extends Component {
     state = { 
-        imageSource: ""
+        imageSource: "",
+        imageIdList: []
      }
     //  https://drive.google.com/uc?export=view&id=0BwJwNmFwiZmYX0lKS3NHamZKZE8tbklmYkt2Yi12WGZ2MzI4
 
@@ -21,15 +22,32 @@ class Article extends Component {
             this.setState(newState);
         };
 
-        axios.get("https://ruje-test.herokuapp.com/imgids")
+        axios.get("https://ruje-test.herokuapp.com/article?id=" + this.props.articleId )
         .then(res => {
-            console.log(res);
-            // const files = JSON.parse(res);
-            const files = res;
-            console.log(files);
-            // imageToDownload.src = "https://drive.google.com/uc?export=view&sz=w400h400&id=" + files.data[1].id;
+            
+            if(res) {
+                console.log(res);
+                let newState = {
+                    imageIdList: [],
+                    articleData: {}
+                };         
+                res.data.forEach((el) => {
+                    switch (el.mimeType) {
+                        case "image/jpeg":
+                            newState.imageIdList.push(el.id)
+                            break;
+                        case "application/json":
+                        console.log("Znaleziono Dżejsona!");
+                        break                    
+                        default:
+                            break;
+                    }
+                });
+                console.log(newState);
+                this.setState(newState);
+            }
 
-            imageToDownload.src = "https://drive.google.com/uc?export=view&id=" + files.data[this.props.imageId].id;
+            imageToDownload.src = "https://drive.google.com/uc?export=view&id=" + res.data[0].id;
             
         });
 
