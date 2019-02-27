@@ -246,11 +246,32 @@
   margin: 20px;
 }
 
+.Article:hover {
+  background-color: red;
+}
+
 .ArticleDisplay {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   justify-content: space-around;
+  background-color: green;
+}
+
+.hiddenArticle {
+  display: none;
+}
+
+.ArticleDisplay {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-around;
+  background-color: green;
+}
+
+.hiddenArticle {
+  display: none;
 }
 
 @font-face {

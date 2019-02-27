@@ -3,4 +3,10 @@
     flex-flow: column nowrap;
     align-items: center;
     justify-content: space-around;
+
+    background-color: green;
+}
+
+.hiddenArticle {
+    display: none;
 }

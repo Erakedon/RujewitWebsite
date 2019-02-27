@@ -6,10 +6,6 @@ class Article extends Component {
         imageSource: "",
         imageIdList: []
      }
-    //  https://drive.google.com/uc?export=view&id=0BwJwNmFwiZmYX0lKS3NHamZKZE8tbklmYkt2Yi12WGZ2MzI4
-
-
-    // imageEl = (<img src={this.state.imageSource} alt="Article picure" />);
 
     componentDidMount() {
 
@@ -29,7 +25,7 @@ class Article extends Component {
                 console.log(res);
                 let newState = {
                     imageIdList: [],
-                    articleData: {}
+                    articleContent: {}
                 };         
                 res.data.forEach((el) => {
                     switch (el.mimeType) {
@@ -38,10 +34,26 @@ class Article extends Component {
                             break;
                         case "application/json":
                         console.log("Znaleziono Dżejsona!");
+
+                        // axios.get("https://ruje-test.herokuapp.com/article?id=datajson" + el.id )
+
+                        // this.loadJSON("https://www.googleapis.com/drive/v2/files/1RH74-BIIuITMwF66EgrZ2QTg-FQlrVOw", data => {
+                        //     console.log(data);
+                        // },
+                        // ()=>{console.log("kurła nima Dżejsona")});
+
+                        axios.get("https://ruje-test.herokuapp.com/datajson?id=1RH74-BIIuITMwF66EgrZ2QTg-FQlrVOw")
+                        .then(res => {
+                            console.log(res);
+                        });
+
+
+
                         break                    
                         default:
                             break;
                     }
+                    
                 });
                 console.log(newState);
                 this.setState(newState);
@@ -54,13 +66,28 @@ class Article extends Component {
         // imageToDownload.src = "https://drive.google.com/uc?export=view&id=0BwJwNmFwiZmYX0lKS3NHamZKZE8tbklmYkt2Yi12WGZ2MzI4";
     }
 
-    // displayImg() {
-    //     return this.state.imageSource ? {display: "block"} : {display: "none"}
-    // }
+    loadJSON(path, success, error)
+    {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function()
+        {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    if (success)
+                        success(JSON.parse(xhr.responseText));
+                } else {
+                    if (error)
+                        error(xhr);
+                }
+            }
+        };
+        xhr.open("GET", path, true);
+        xhr.send();
+    }
 
     render() { 
         return ( 
-            <div className="Article">
+            <div className="Article" onClick={this.props.clickHandler}>
                 <div className="header">Wikingowie go nienawidzą!</div>
                 <div className="pictureBox">
                     {/* {this.imageEl} */}

@@ -4,12 +4,25 @@ import axios from 'axios';
 
 class ArticleDisplay extends Component {
     state = { 
+        display: "none",
+        title: "Fajny tytuł",
+        content: "Lorem ipsum dolor sit amet",
         currentImage: 1
      }
 
      imagesIdList = [];
 
-     componentDidMount() {         
+     componentDidMount() {        
+        console.log(this.props);
+
+        //  if(this.props.location.search) {
+        //     this.setState({display: "flex"});
+        //     console.log("artukule pokaż się");
+        //  } else {
+        //     this.setState({display: "none"});
+        //     console.log("artukule schow te tlusta dooope");
+
+        //  }
 
 
         axios.get("https://ruje-test.herokuapp.com/articledata")
@@ -29,12 +42,21 @@ class ArticleDisplay extends Component {
         };
      }
 
+     showArticle() {
+         if(this.props.history.location.search === "") {
+             return "hiddenArticle";
+         }
+         else {
+             return "ArticleDisplay";
+         }
+     }
+
     render() { 
         return ( 
-            <div className="ArticleDisplay">
-                <div className="title">{this.props.title}</div>
-                <div className="pictureBox">{this.props.title}</div>
-                <div className="Title">{this.props.title}</div>
+            <div className={this.showArticle()}>
+                <div className="title">{this.state.title}</div>
+                {/* <div className="pictureBox">{this.props.title}</div> */}
+                <div className="Title">{this.state.content}</div>
             </div>
          );
     }
