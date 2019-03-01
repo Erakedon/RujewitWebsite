@@ -8,8 +8,9 @@ $nav-stroke-width: 3;
     right: 0px;
     top: 0px;
 
-    width: 120px;
-    height: 120px;
+    width: 110px;
+    height: 110px;
+
 
     z-index: 100;
     .menuBtn {
@@ -22,9 +23,8 @@ $nav-stroke-width: 3;
         align-items: center;
         justify-content: flex-start;
 
-        width: 110px;
-        height: 110px;
-
+        width: 95px;
+        height: 95px;
 
         border-bottom-left-radius: 100%;
 
@@ -38,7 +38,7 @@ $nav-stroke-width: 3;
 
             font-family: Vinque;
             color: $secondary;
-            font-size: 1.5em;
+            font-size: 1.3em;
 
             margin-top: 25%;
 
@@ -125,14 +125,6 @@ $nav-stroke-width: 3;
 
 .Nav.active, .notCollapsed .Nav {
 
-
-    // .menuBtn.btnOff {
-    //     transform: rotateZ(-90deg);
-    // }    
-    // .menuBtn.btnOn {
-    //     transform: rotateZ(0deg);
-    // }
-
     .navBtns {
         // transform: rotateZ(0deg);
 
@@ -165,12 +157,60 @@ $nav-stroke-width: 3;
 
 }
 
-// .notCollapsed .Nav {
-//     .menuBtn.btnOff {
-//         background-color: $nav-fill-color;
-//         border: ($nav-stroke-width + px) solid $nav-stroke-color;
-//         .text {
-//             color: $nav-stroke-color;
-//         }
-//     }
-// }
+
+@media (max-width: 600px) {
+
+    .Nav {
+
+        width: 75px;
+        height: 75px;
+        transform: translateY(25%) scale(1.5);
+
+        .menuBtn {
+
+            width: 65px;
+            height: 65px;
+
+
+            .text {
+                font-size: 1em;
+                transform: rotateZ(45deg) translate(5px, -5px);
+            }
+        }
+
+        .navBtns {
+            // transform: scaleY(1.4);
+        }
+    }
+
+    .notCollapsed .Nav {
+
+        .navBtns {    
+            #wing {
+                transform: rotateZ(-90deg);
+            }
+        }
+    }
+
+    .Nav.active, .Nav {
+
+        .navBtns {    
+            #wing {
+                transform: translateX(200px) rotateZ(-90deg);
+            }
+
+        }
+    }
+
+    .Nav.active {
+
+        .menuBtn.btnOff {
+            transform: rotateZ(0deg);
+        }    
+        .menuBtn.btnOn {
+            transform: rotateZ(90deg);
+        }
+    
+    }
+
+}

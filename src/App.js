@@ -6,13 +6,15 @@ import Header from "./shared/Header/Header";
 import Travels from './pages/Travels/Travels';
 import "./style.css";
 import ArticleDisplay from './shared/ArticleDisplay/ArticleDisplay';
+import errorDisplay from "./shared/ErrorDisplay/ErrorDisplay";
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
         <div className="App">
-          <Route path="/" component={ArticleDisplay} />
+          <Route path="*/article" component={ArticleDisplay} />
+          <Route path="*/error" component={errorDisplay} />
           <Route path="/" component={Header} />
           <Route path="/team" exact component={Team} />
           <Route path="/travels" component={Travels} />

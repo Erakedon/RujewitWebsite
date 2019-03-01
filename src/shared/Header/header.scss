@@ -54,7 +54,7 @@
   }
 
   .backgroundPart {
-      height: 35vw;
+      height: 30vw;
     //  background-color: #383250;
     // background-image: linear-gradient(to bottom,#383250, #383250, #383250, rgba(0,0,0,0));
 
@@ -71,4 +71,9 @@
     height: 20vw;
   }
 
+}
+
+@media (max-width: 600px) {
+
+  
 }

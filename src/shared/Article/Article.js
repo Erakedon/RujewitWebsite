@@ -4,7 +4,9 @@ import axios from 'axios';
 class Article extends Component {
     state = { 
         imageSource: "",
-        imageIdList: []
+        imageIdList: [],
+        title: "",
+        loadingPage: "loading"
      }
 
     componentDidMount() {
@@ -30,78 +32,42 @@ class Article extends Component {
                 res.data.forEach((el) => {
                     switch (el.mimeType) {
                         case "image/jpeg":
+                        console.log(el.id);
                             newState.imageIdList.push(el.id)
                             break;
-                        case "application/json":
-                        console.log("Znaleziono Dżejsona!");
+                        case "application/vnd.google-apps.document":
+                            newState.title = el.name;
+                            break;
 
-                        // axios.get("https://ruje-test.herokuapp.com/article?id=datajson" + el.id )
-
-                        // this.loadJSON("https://www.googleapis.com/drive/v2/files/1RH74-BIIuITMwF66EgrZ2QTg-FQlrVOw", data => {
-                        //     console.log(data);
-                        // },
-                        // ()=>{console.log("kurła nima Dżejsona")});
-
-                        axios.get("https://ruje-test.herokuapp.com/datajson?id=1RH74-BIIuITMwF66EgrZ2QTg-FQlrVOw")
-                        .then(res => {
-                            console.log(res);
-                        });
-
-
-
-                        break                    
                         default:
                             break;
                     }
                     
                 });
-                console.log(newState);
+                newState.imageSource = "https://drive.google.com/uc?export=view&id=" + newState.imageIdList[0];
                 this.setState(newState);
             }
-
-            imageToDownload.src = "https://drive.google.com/uc?export=view&id=" + res.data[0].id;
+            imageToDownload = this.state.imageSource;
             
         });
 
-        // imageToDownload.src = "https://drive.google.com/uc?export=view&id=0BwJwNmFwiZmYX0lKS3NHamZKZE8tbklmYkt2Yi12WGZ2MzI4";
     }
-
-    loadJSON(path, success, error)
-    {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function()
-        {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    if (success)
-                        success(JSON.parse(xhr.responseText));
-                } else {
-                    if (error)
-                        error(xhr);
-                }
-            }
-        };
-        xhr.open("GET", path, true);
-        xhr.send();
+    
+    onPictureLoad() {
+        this.setState({loadingPage: ""})
     }
 
     render() { 
         return ( 
-            <div className="Article" onClick={this.props.clickHandler}>
-                <div className="header">Wikingowie go nienawidzą!</div>
+            <div className={this.state.loadingPage + " Article"} onClick={this.props.clickHandler}>
                 <div className="pictureBox">
                     {/* {this.imageEl} */}
                     <img src={this.state.imageSource} 
-                    alt="Article picure"                     
+                    alt="Article picure"                 
+                    onLoad={() => {this.onPictureLoad()}}    
                     />
-                    <div className="imgCover"></div>
+                <div className="header">{this.state.title}</div>
                 </div>
-                {/* <div className="content">
-                    <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, quasi. Fugiat soluta, vel reiciendis aliquam autem quos, nisi inventore architecto illum error delectus a ducimus beatae temporibus. Quaerat, magnam rem.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus vero nihil, eveniet velit cumque ab quis hic id beatae, blanditiis in vitae atque ad deleniti minus voluptates, fugiat delectus ipsa!
-                    </p>
-                </div> */}
             </div>
          );
     }

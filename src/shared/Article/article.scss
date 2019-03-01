@@ -5,12 +5,25 @@
     // justify-content: space-around;
     align-content: stretch;
 
-    // width: 800px;
+    width: 400px;
     // max-width: 90vw;
+    padding: 20px;
 
     margin-bottom: 100px;
 
     z-index: 10;
+
+    filter: grayscale(0.5);
+
+    background-color: rgba($primary, 0);
+    border-radius: 10px;
+    box-shadow: 0px 0px $primary 2px 2px;
+    // border: 2px solid $secondary-dark;
+
+    transition: 0.5s ease;
+    opacity: 1;
+
+    cursor: pointer;
 
     .header {
         display: flex;
@@ -19,11 +32,14 @@
         justify-content: center;
         align-items: center;
 
-        padding: 10px;
+        // padding: 10px;
+        margin: 10px;
+        opacity: 0.8;
+        // background-color: $under-text-color  
 
-        // background-color: $under-text-color;
-
-        font-size: 1.5em;
+        transition: 0.5s ease;
+        font-size: 1.4em;
+        text-align: center;
     }
 
     .pictureBox {
@@ -34,8 +50,8 @@
         align-items: center;
         justify-content: flex-start;
 
-        width: 60vw;
-        height: 60vw;
+        // width: 60vw;
+        // height: 60vw;
         max-height: 350px;
         max-width: 450px;
         overflow: hidden;
@@ -46,9 +62,17 @@
         // filter: blur(10px);
 
 
+
         img {            
             width: 80%;
             z-index: 10;
+            opacity: 0.6;
+
+            border:  2px solid $secondary;
+            margin: 5px;
+
+
+            transition: 0.5s ease;
         }
 
         .imgCover {
@@ -64,24 +88,31 @@
         }
 
     }
-    
-    .content {
-        display: flex;
-        flex-flow: column nowrap;
-
-        // padding: 20px;
-
-        p {
-            margin: 20px;
-        }
-
-        font-family: DSEtienne;
-
-        background-color: $under-text-color;
-    }
-
 }
 
 .Article:hover {
-    background-color: red;
+    // background-color: rgba( #fff, 0.1);
+    // background-color: $primary-light;
+    // background-color: rgba($primary, 0.4);
+    // background-color: rgba(#ffffff, 0.1);
+    filter: grayscale(0);
+
+
+    .header
+    {
+            text-shadow: 0px 0px 2px $secondary;
+            opacity: 1;
+    }
+
+    .pictureBox {
+
+        img {
+            box-shadow: 0px 0px 2px 2px $secondary;
+            opacity: 1;
+        }
+    }
+}
+
+.Article.loading {
+    opacity: 0;
 }

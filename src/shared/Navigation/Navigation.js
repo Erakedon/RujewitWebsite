@@ -20,7 +20,7 @@ class Navigation extends Component {
         ],
         url: [
             "/",
-            "teammates",
+            "team",
             "travels",
             "contact"
         ]

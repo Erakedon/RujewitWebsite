@@ -1,9 +1,12 @@
 import React from 'react';
+import { ReactComponent as LoadingSvg } from './loadingIcon.svg';
 
-const loadingIcon = () => {
+const LoadingIcon = (props) => {
     return ( 
-        <div>Loading ocon this is</div>
+        <div className={props.passedClass + " loadingIcon"}>
+            <LoadingSvg />
+        </div>
      );
 }
  
-export default loadingIcon;
+export default LoadingIcon;

@@ -24,22 +24,11 @@ class Travels extends Component {
         });
     }
 
-    // loadArticleData(articlesNumToLoad) {
-    //     const numOfLoadedArt = this.state.articlesData.length
-
-    //     for (let i = numOfLoadedArt; i < numOfLoadedArt + articlesNumToLoad; i++) {
-    //         if(i >= this.state.articlesList.length) break;
-            
-
-            
-    //     }
-    // }
-
     linkToArticle(articleId) {
         // this.props.headerPropsRef.history.push(url);
-        console.log("open article " + articleId);
+        // console.log("open article " + articleId);
         console.log(this.props);
-        this.props.history.push("/travels?" + articleId);
+        this.props.history.push(this.props.history.location.pathname + "/article?" + articleId);
 
     }
 

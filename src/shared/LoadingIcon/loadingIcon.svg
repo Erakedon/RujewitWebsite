@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   viewBox="0 0 68.420998 68.420998"
+   version="1.1"
+   id="loadingSvg">
+  <g
+     id="layer1"
+     transform="translate(-73.766384,-141.98367)">
+    <circle
+       id="outline"
+       cx="107.97688"
+       cy="176.19417"
+       r="34.210499" />
+    <path
+       id="p1"
+       d="m 140.85103,176.19417 a 32.874149,32.874149 0 0 1 -32.87415,32.87415 l 0,-32.87415 z" />
+    <path
+       id="p2"
+       d="m -75.102734,-176.19417 a 32.874149,32.874149 0 0 1 -32.874146,32.87415 l 0,-32.87415 z"
+       transform="scale(-1)" />
+    <path
+       id="p3"
+       d="m -143.32002,107.97688 a 32.874149,32.874149 0 0 1 -32.87415,32.87415 l 0,-32.87415 z"
+       transform="rotate(-90)" />
+    <path
+       id="p4"
+       d="m 209.06832,-107.97688 a 32.874149,32.874149 0 0 1 -32.87415,32.874146 l 0,-32.874146 z"
+       transform="rotate(90)" />
+  </g>
+</svg>
