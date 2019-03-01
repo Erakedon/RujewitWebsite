@@ -12,7 +12,7 @@ class MainPage extends Component {
     
   loadStory() {
     axios
-      .get("https://ruje-test.herokuapp.com/articlecontent?id=1QRf0LNvZHhy5HOzktmxm2s3CiCmLRnnoQ7faL5QlPNY")
+      .get("https://ruje-test.herokuapp.com/articlecontent?id=1qmftb6ZuZFAZ4i0Jku052GxiBzjm07AHfhbJK4AKTBo")
       .then(res => {
         console.log(res);
         if(this.state.currentDescription !== res.data)
@@ -32,11 +32,14 @@ class MainPage extends Component {
     }
 
     render() { 
-        // this.loadStory();
+        if(this.state.storyContent === "")
+            this.loadStory();
         return ( 
             <div className="MainPage page">
 
-            {/* <FullWidthText >{this.state.storyContent}</FullWidthText> */}
+            <FullWidthText classes="big" >Przybliżamy Historię</FullWidthText>
+            <FullWidthText >{this.state.storyContent}</FullWidthText>
+
             
             <Article 
             clickHandler={() => {this.linkToArticle("1Y9MuA-_WPLNlOd3iCcXkBfs8gHEU1xhy")}} 

@@ -32,7 +32,6 @@ class Article extends Component {
                 res.data.forEach((el) => {
                     switch (el.mimeType) {
                         case "image/jpeg":
-                        console.log(el.id);
                             newState.imageIdList.push(el.id)
                             break;
                         case "application/vnd.google-apps.document":

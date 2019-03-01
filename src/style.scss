@@ -11,6 +11,7 @@
 @import "./shared/FullWidthText/fullWidthText.scss";
 @import "./pages/Travels/travels.scss";
 @import "./shared/LoadingIcon/loadingIcon.scss";
+@import "./pages/Contact/contact.scss";
 
 @font-face {
   font-family: "Vinque";
@@ -19,7 +20,7 @@
 
 @font-face {
   font-family: "DSEtienne";
-  src: url("./fonts/vinque.ttf");
+  src: url("./fonts/DSEtienne.ttf");
 }
 
 body {

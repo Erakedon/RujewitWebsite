@@ -21,9 +21,9 @@
 <flowRoot transform="matrix(.26458 0 0 .26458 10.114 5.7619)" font-family="sans-serif" font-size="40px" letter-spacing="0px" word-spacing="0px" style="line-height:1.25" ><flowRegion ><rect x="425.83" y="40.111" width="266.64" height="42.775" /></flowRegion><flowPara>dru</flowPara></flowRoot>
 </g>
 </g>
-<g transform="matrix(.64892 0 0 .64892 151.25 232.85)"  font-family="'DS Etienne'" letter-spacing="0px" opacity=".98" word-spacing="0px">
-<text transform="scale(1.1643 .85886)" x="-33.672737" y="53.566776" font-size="15.472px" stroke-width=".3868" style="line-height:1.25" ><tspan x="-33.672737" y="53.566776" stroke-width=".3868">Drużyna</tspan></text>
-<text transform="scale(1.1643 .85886)" x="-16.487165" y="65.572189" font-size="15.472px" opacity="1" stroke-width=".3868" style="line-height:1.25"><tspan x="-16.487165" y="65.572189" stroke-width=".3868">Najemna</tspan></text>
+<g transform="matrix(.64892 0 0 .64892 151.25 232.85)">
+<text transform="scale(1.1643 .85886)" x="-33.672737" y="53.566776"  stroke-width=".3868"  ><tspan x="-33.672737" y="53.566776" stroke-width=".3868">Drużyna</tspan></text>
+<text transform="scale(1.1643 .85886)" x="-16.487165" y="65.572189"  opacity="1" stroke-width=".3868" ><tspan x="-16.487165" y="65.572189" stroke-width=".3868">Najemna</tspan></text>
 </g>
 </g>
 </g>

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { ReactComponent as Leftover1 } from './leftout_1.svg';
-import { ReactComponent as Leftover2 } from './leftout_2.svg';
-import { ReactComponent as Leftover3 } from './leftout_3.svg';
-import { ReactComponent as Leftover4 } from './leftout_4.svg';
+// import { ReactComponent as Leftover1 } from './leftout_1.svg';
+// import { ReactComponent as Leftover2 } from './leftout_2.svg';
+// import { ReactComponent as Leftover3 } from './leftout_3.svg';
+// import { ReactComponent as Leftover4 } from './leftout_4.svg';
 
 
 
@@ -11,7 +11,7 @@ class HeaderBg extends Component {
     render() { 
         return ( 
             <div className="HeaderBg">
-                <div className="leftoverSpace" />
+                {/* <div className="leftoverSpace" />
                 <div className="leftoverSpace" />
                 <Leftover1 className="leftover1" />
                 <div className="leftoverSpace" />
@@ -24,7 +24,10 @@ class HeaderBg extends Component {
                 <Leftover1 className="leftover1" />
                 <div className="leftoverSpace" />
                 <Leftover4 className="leftover4" />
-                <div className="leftoverSpace" />
+                <div className="leftoverSpace" /> */}
+
+                {this.props.children}
+
             </div>
          );
     }
