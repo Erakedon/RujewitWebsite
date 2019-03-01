@@ -70,7 +70,7 @@
         display: flex;
         flex-flow: row wrap;
         max-width: 80%;
-        margin: 50px;
+        margin: 80px;
 
         img {
             height: 80px;
@@ -94,3 +94,20 @@
 .Team.loading {
     opacity: 0;
 }
+
+@-moz-document url-prefix() {
+    .Team {
+
+        .teammateBox {
+
+            .description {
+                margin-top: -100px;
+
+            }
+        }
+    }
+
+    .teammatesIcons {
+        padding-top: 100px;
+    }
+  }

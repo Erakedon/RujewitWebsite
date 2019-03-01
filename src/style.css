@@ -2,6 +2,7 @@
   display: flex;
   flex-flow: row wrap;
   align-items: center;
+  justify-content: space-around;
 }
 
 .headerLogo {
@@ -228,7 +229,7 @@
   flex-flow: column nowrap;
   align-items: center;
   justify-content: flex-start;
-  max-height: 350px;
+  max-height: 400px;
   max-width: 450px;
   overflow: hidden;
 }
@@ -586,7 +587,7 @@
   display: flex;
   flex-flow: row wrap;
   max-width: 80%;
-  margin: 50px;
+  margin: 80px;
 }
 .Team .teammatesIcons img {
   height: 80px;
@@ -606,6 +607,15 @@
   opacity: 0;
 }
 
+@-moz-document url-prefix() {
+  .Team .teammateBox .description {
+    margin-top: -100px;
+  }
+
+  .teammatesIcons {
+    padding-top: 100px;
+  }
+}
 .FullWidthText {
   width: 90%;
   padding: 20px;
