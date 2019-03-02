@@ -18,7 +18,7 @@ class Header extends Component {
     // currentHeaderBg: []
   }
   previousPage = "";
-  currentPage = "brak poprzedniej strony";
+  currentPage = "none";
 
   componentDidMount = () => {
 
@@ -50,6 +50,8 @@ class Header extends Component {
       return(<TravelsSvg key={id} className={type} />);
       case "team":
       return(<TeamSvg key={id} className={type} />);
+      case "none":
+      return(<div key={id}></div>)
       default:
       return (<MainPageSvg key={id} className={type} />);
     }
