@@ -18,6 +18,7 @@
         animation: slideIn;
         animation-duration: 4s;
         transform: translateX(0vw);
+        transform-origin: 50% 100%;
     }
 
     .previous {
@@ -65,11 +66,11 @@
 // }
 
 @keyframes slideIn {
-    from {transform: translateX(100vw)}
-    to {transform: translateX(0vw)}
+    from {transform: translateX(100vw) scale(0.2)}
+    to {transform: translateX(0vw) scale(1)}
 }
 
 @keyframes slideOut {
-    from {transform: translateX(0vw)}
-    to {transform: translateX(-100vw)}
+    from {transform: translateX(0vw) scale(1)}
+    to {transform: translateX(-100vw) scale(2)}
 }

@@ -26,6 +26,11 @@
 body {
   margin: 0;
   background-color: $bg-color;
+  background-image: url("./svg/swallowBg.svg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 50%;
+  background-position: center bottom;
 
   width: 100vw;
   height: 100vh;
