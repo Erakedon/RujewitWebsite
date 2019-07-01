@@ -14,35 +14,50 @@ class Team extends Component {
   };
   currentTeammateDescription = "";
 
+  teamRanksList = [
+    "captain",
+    "oldteam",
+    "piastun",
+    "teammate",
+    "slave"
+  ]
+
+  componentDidMount() {
+    this.getThumbnails();
+    this.getDescriptions();
+    this.getPictures();
+  }
+
   getThumbnails() {
-    axios.get("https://ruje-test.herokuapp.com/teamthumb").then((res, err) => {
-      console.log(res);
+    axios.get("https://ruje-test.herokuapp.com/teamthumb")
+    .then(res => {
       const newThumb = res.data
         .sort((a, b) => {
-          if (a.name.split(".")[0] > b.name.split(".")[0]) return 1;
+          const valueA = this.teamRanksList.indexOf(a.name.split(".")[1]);
+          const valueB = this.teamRanksList.indexOf(b.name.split(".")[1]);
+
+          if(valueA > valueB) return 1;
           else return -1;
         })
         .map(el => {
           return {
             id: el.id,
-            name: el.name.split(".")[1]
+            name: el.name.split(".")[0]
           };
         });
-      console.log(newThumb);
       this.setState({ thumbnails: newThumb });
     });
-  } //end of thumbnails
+  }
 
   getPictures() {
-    axios.get("https://ruje-test.herokuapp.com/teampic").then((res, err) => {
-      console.log(res);
+    axios.get("https://ruje-test.herokuapp.com/teampic")
+    .then(res=> {
       const newPics = res.data.map(el => {
         return {
           id: el.id,
           name: el.name.split(".")[0]
         };
       });
-      console.log(newPics);
       this.setState({pictures: newPics});
     });
   }
@@ -50,38 +65,37 @@ class Team extends Component {
   getDescriptions() {
     axios
       .get("https://ruje-test.herokuapp.com/teammatedesc")
-      .then((res, err) => {
-        console.log(res);
+      .then(res => {
         const newDesc = res.data.map(el => {
           return {
             id: el.id,
             name: el.name.split(".")[0]
           };
         });
-        console.log(newDesc);
         this.setState({ descriptions: newDesc });
+        this.loadDescription("team");
       });
   }
 
-  loadDescription() {
-    console.log(this.state);
-    let descId = this.state.descriptions.find(p => {
-        return p.name === this.state.activeTeammate
-    }).id;
+  loadDescription(teammateName) {
+    const descSearchedElement = this.state.descriptions.find(p => {
+        return p.name === teammateName
+    });
+    if(!descSearchedElement) return
+    const descId = descSearchedElement.id;
 
     axios
       .get("https://ruje-test.herokuapp.com/articlecontent?id=" + descId)
       .then(res => {
-        console.log(res);
         if(this.state.currentDescription !== res.data)
             this.setState({
               currentDescription: res.data
-              // loadingData: ""
             });
       });
   }
 
   selectTeammate(name) {
+    this.loadDescription(name);
     this.setState({ 
       activeTeammate: name,
       loadingData: "loading"
@@ -89,7 +103,6 @@ class Team extends Component {
   }
 
   onImageLoad() {
-    console.log("onImageLoad");
     this.setState({
       loadingData: "",
       loadingPage: ""
@@ -98,21 +111,11 @@ class Team extends Component {
 
   render() {
     let thumbnails = [];
-    // let thumbUrl = "https://drive.google.com/thumbnail?authuser=0&sz=w250&id=";
-    let picUrl = "https://drive.google.com/uc?export=view&id=";
-    let picture = <h1>Brak</h1>;
-    // let description = "";
+    const picUrl = "https://drive.google.com/uc?export=view&id=";
+    let picture = [];
 
-    if (this.state.thumbnails.length === 0) this.getThumbnails();
-    if (this.state.descriptions.length === 0) this.getDescriptions();
-    else this.loadDescription();
-
-    if (this.state.pictures.length === 0) {
-      this.getPictures();
-    } else {
+    if (this.state.pictures.length > 0) {
       let imgId = this.state.pictures.find(p => {
-        // if(p.name == this.state.activeTeammate)
-        //     return p.id;
         return p.name === this.state.activeTeammate;
       }).id;
 
@@ -132,10 +135,8 @@ class Team extends Component {
       );
     });
 
-
     return (
       <div className={this.state.loadingPage + " Team"}>
-        {/* <fullWidthText></fullWidthText> */}
         <div className="teammateBox">
           <LoadingIcon passedClass={this.state.loadingData} />
           <div className={this.state.loadingData + " pictureBox"} onLoad={() => {this.onImageLoad()}}>{picture}</div>

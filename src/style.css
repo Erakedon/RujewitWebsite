@@ -25,7 +25,7 @@
   z-index: 100;
 }
 .Header .floatingPart .logo {
-  fill: #db9f37;
+  fill: #be9142;
   height: 6vw;
   font-family: DSEtienne;
   font-size: 15px;
@@ -57,6 +57,7 @@
   animation: slideIn;
   animation-duration: 4s;
   transform: translateX(0vw);
+  transform-origin: 50% 100%;
 }
 .HeaderBg .previous {
   animation: slideOut;
@@ -88,18 +89,18 @@
 
 @keyframes slideIn {
   from {
-    transform: translateX(100vw);
+    transform: translateX(100vw) scale(0.2);
   }
   to {
-    transform: translateX(0vw);
+    transform: translateX(0vw) scale(1);
   }
 }
 @keyframes slideOut {
   from {
-    transform: translateX(0vw);
+    transform: translateX(0vw) scale(1);
   }
   to {
-    transform: translateX(-100vw);
+    transform: translateX(-100vw) scale(2);
   }
 }
 .Nav {
@@ -128,18 +129,18 @@
 }
 .Nav .menuBtn .text {
   font-family: Vinque;
-  color: #c99131;
+  color: #c49545;
   font-size: 1.3em;
   margin-top: 25%;
   transform: rotateZ(45deg) translate(10px, -10px);
 }
 .Nav .menuBtn.btnOn {
   background-color: #351800;
-  border: 3px solid #a07327;
+  border: 3px solid #6b5022;
   transform: rotateZ(90deg);
 }
 .Nav .menuBtn.btnOff {
-  background-color: #b4822c;
+  background-color: #b6883a;
   border: 3px solid #351800;
   transform: rotateZ(0deg);
 }
@@ -164,11 +165,11 @@
   z-index: 10;
 }
 .Nav .navBtns path {
-  stroke: #a07327;
+  stroke: #6b5022;
   stroke-width: 0.33;
 }
 .Nav .navBtns text {
-  fill: #c99131;
+  fill: #c49545;
   font-size: 2.3px;
 }
 .Nav .navBtns #wing:nth-of-type(1) text {
@@ -295,7 +296,7 @@
   width: 80%;
   z-index: 10;
   opacity: 0.6;
-  border: 2px solid #c99131;
+  border: 2px solid #c49545;
   margin: 5px;
   transition: 0.5s ease;
 }
@@ -314,11 +315,11 @@
   filter: grayscale(0);
 }
 .Article:hover .header {
-  text-shadow: 0px 0px 2px #c99131;
+  text-shadow: 0px 0px 2px #c49545;
   opacity: 1;
 }
 .Article:hover .pictureBox img {
-  box-shadow: 0px 0px 2px 2px #c99131;
+  box-shadow: 0px 0px 2px 2px #c49545;
   opacity: 1;
 }
 
@@ -355,23 +356,23 @@
   height: 50px;
   border-radius: 25px;
   background-color: #351800;
-  border: 2px solid #b4822c;
-  color: #c99131;
+  border: 2px solid #7e5e28;
+  color: #c49545;
   font-weight: 600;
   font-size: 1.1em;
   transform: scale(1);
   cursor: pointer;
 }
 .ArticleDisplay .articleBox button:hover {
-  color: #db9f37;
-  border: 2px solid #c99131;
+  color: #be9142;
+  border: 2px solid #c49545;
   transform: scale(1.05);
 }
 .ArticleDisplay .articleBox .title {
   font-size: 1.5em;
   text-align: center;
   max-width: 80vw;
-  border: 2px solid #b4822c;
+  border: 2px solid #7e5e28;
   border-radius: 5px;
   padding: 10px;
   background-color: #351800;
@@ -387,7 +388,7 @@
 }
 .ArticleDisplay .articleBox .pictureBox img {
   height: 100%;
-  border: 3px solid #c99131;
+  border: 3px solid #c49545;
   padding: 2px;
   opacity: 1;
   transition: 0.5s ease;
@@ -404,7 +405,7 @@
 }
 .ArticleDisplay .articleBox .picturesList img {
   height: 100px;
-  border: 2px solid #b4822c;
+  border: 2px solid #7e5e28;
   border-radius: 5px;
   cursor: pointer;
   margin: 2px;
@@ -415,14 +416,14 @@
 }
 .ArticleDisplay .articleBox .picturesList img.active {
   margin: 1px;
-  border: 3px solid #c99131;
+  border: 3px solid #c49545;
 }
 .ArticleDisplay .articleBox .content {
   font-size: 0.9em;
   margin: 20px;
   width: 80vw;
   max-width: 700px;
-  border: 2px solid #b4822c;
+  border: 2px solid #7e5e28;
   border-radius: 5px;
   padding: 20px;
   background-color: #351800;
@@ -482,23 +483,23 @@
   height: 50px;
   border-radius: 25px;
   background-color: #351800;
-  border: 2px solid #b4822c;
-  color: #c99131;
+  border: 2px solid #7e5e28;
+  color: #c49545;
   font-weight: 600;
   font-size: 1.1em;
   transform: scale(1);
   cursor: pointer;
 }
 .ArticleDisplay .articleBox button:hover {
-  color: #db9f37;
-  border: 2px solid #c99131;
+  color: #be9142;
+  border: 2px solid #c49545;
   transform: scale(1.05);
 }
 .ArticleDisplay .articleBox .title {
   font-size: 1.5em;
   text-align: center;
   max-width: 80vw;
-  border: 2px solid #b4822c;
+  border: 2px solid #7e5e28;
   border-radius: 5px;
   padding: 10px;
   background-color: #351800;
@@ -514,7 +515,7 @@
 }
 .ArticleDisplay .articleBox .pictureBox img {
   height: 100%;
-  border: 3px solid #c99131;
+  border: 3px solid #c49545;
   padding: 2px;
   opacity: 1;
   transition: 0.5s ease;
@@ -531,7 +532,7 @@
 }
 .ArticleDisplay .articleBox .picturesList img {
   height: 100px;
-  border: 2px solid #b4822c;
+  border: 2px solid #7e5e28;
   border-radius: 5px;
   cursor: pointer;
   margin: 2px;
@@ -542,14 +543,14 @@
 }
 .ArticleDisplay .articleBox .picturesList img.active {
   margin: 1px;
-  border: 3px solid #c99131;
+  border: 3px solid #c49545;
 }
 .ArticleDisplay .articleBox .content {
   font-size: 0.9em;
   margin: 20px;
   width: 80vw;
   max-width: 700px;
-  border: 2px solid #b4822c;
+  border: 2px solid #7e5e28;
   border-radius: 5px;
   padding: 20px;
   background-color: #351800;
@@ -617,7 +618,7 @@
 .Team .teammateBox .pictureBox img {
   max-height: 550px;
   max-width: 90vw;
-  border: 3px solid #b4822c;
+  border: 3px solid #7e5e28;
   padding: 2px;
 }
 .Team .teammateBox .pictureBox.loading {
@@ -630,7 +631,7 @@
   width: 350px;
   max-width: 90vw;
   font-size: 0.95em;
-  border: 3px solid #b4822c;
+  border: 3px solid #7e5e28;
   opacity: 1;
   transform: scaleY(1);
   transition: 0.5s ease 0.2s;
@@ -653,13 +654,13 @@
   height: 80px;
   border-radius: 20px;
   margin: 5px;
-  border: 3px solid #c99131;
+  border: 3px solid #c49545;
   opacity: 0.8;
   cursor: pointer;
 }
 .Team .teammatesIcons img:hover {
   opacity: 1;
-  border: 4px solid #db9f37;
+  border: 4px solid #be9142;
   margin: 4px;
 }
 
@@ -680,7 +681,7 @@
   width: 90%;
   padding: 30px;
   color: #bbb;
-  text-shadow: 0px 0px 2px #c99131;
+  text-shadow: 0px 0px 2px #c49545;
   text-align: center;
   animation-name: enter;
   animation-duration: 4s;
@@ -732,7 +733,7 @@
   fill: #351800;
 }
 .loadingIcon #loadingSvg #p3, .loadingIcon #loadingSvg #p4, .loadingIcon #loadingSvg #outline {
-  fill: #c99131;
+  fill: #c49545;
 }
 
 .loadingIcon.loading {
@@ -757,7 +758,7 @@
   }
 }
 .Contact .disc {
-  color: #c99131;
+  color: #c49545;
   font-weight: 800;
 }
 
@@ -772,6 +773,11 @@
 body {
   margin: 0;
   background-color: #1f1938;
+  background-image: url("./svg/swallowBg.svg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 50%;
+  background-position: center bottom;
   width: 100vw;
   height: 100vh;
   font-family: Vinque;
