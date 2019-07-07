@@ -26,10 +26,9 @@
 body {
   margin: 0;
   background-color: $bg-color;
-  background-image: url("./svg/swallowBg.svg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 50%;
+  background-image: url("./svg/wavesBg.svg");
+  background-repeat: repeat;
+  background-size: 25px;
   background-position: center bottom;
 
   width: 100vw;
@@ -39,6 +38,7 @@ body {
 
   color: $text-color;
   font-size: 20px;
+  letter-spacing: 1px;
 
   overflow-x: hidden;
 }
@@ -65,5 +65,4 @@ body {
   body {
     font-size: 15px;
   }
-
 }

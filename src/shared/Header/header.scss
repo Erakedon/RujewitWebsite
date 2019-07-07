@@ -22,7 +22,7 @@
 
     width: 100%;
 
-    padding: 20px;
+    padding: 5px;
 
     box-sizing: border-box;
 
@@ -32,9 +32,11 @@
     .logo {
       fill: $secondary-intense;
 
-      height: 6vw;
+      height: 4vw;
+      min-height: 40px;
       font-family: DSEtienne;
       font-size: 15px;
+      letter-spacing: 0px;
       
       z-index: 60;
 
@@ -56,7 +58,7 @@
   }
 
   .backgroundPart {
-      height: 30vw;
+      height: 200px;
     //  background-color: #383250;
     // background-image: linear-gradient(to bottom,#383250, #383250, #383250, rgba(0,0,0,0));
 
@@ -70,12 +72,17 @@
 .Header.notCollapsed {
 
   .logo {
-    height: 20vw;
+    height: 10vw;
+    min-height: 80px;
   }
 
 }
 
 @media (max-width: 600px) {
-
+  .Header {
+    .backgroundPart {
+      height: 120px; 
+    }
+  }
   
 }

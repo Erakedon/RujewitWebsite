@@ -3,7 +3,7 @@ import { ReactComponent as LoadingSvg } from './loadingIcon.svg';
 
 const LoadingIcon = (props) => {
     return ( 
-        <div className={props.passedClass + " loadingIcon"}>
+        <div className={props.isLoading ? "loadingIcon loading" : "loadingIcon"}>
             <LoadingSvg />
         </div>
      );
