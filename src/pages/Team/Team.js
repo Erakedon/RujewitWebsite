@@ -4,17 +4,16 @@ import LoadingIcon from "../../shared/LoadingIcon/LoadingIcon";
 
 class Team extends Component {
   state = {
-    activeTeammate: "team",
-    thumbnails: [],
-    pictures: [],
-    descriptions: [],
-    currentDescription: "",
-    loadingData: "loading",
-    loadingPage: "loading"
-  };
-  currentTeammateDescription = "";
+    currentTeammate: 0,
+    teamData: [],
+    pageLoading: true,
+    imageLoading: true,
 
-  teamRanksList = [
+    errorOnLoadingPage: false
+  };
+
+  teamRanksOrder = [
+    "team",
     "captain",
     "oldteam",
     "piastun",
@@ -22,10 +21,40 @@ class Team extends Component {
     "slave"
   ]
 
+  ranksToDisplayForm = [
+    "Drużyna",
+    "Dowódca",
+    "Drużyna starsza",
+    "Piastuni",
+    "Drużynnicy młodsi",
+    "Niewolni"
+  ]
+
   componentDidMount() {
-    this.getThumbnails();
-    this.getDescriptions();
-    this.getPictures();
+    this.getTeammatesData();
+  }
+
+  getTeammatesData() {
+    axios.get("https://ruje-test.herokuapp.com/teammates")
+      .then(res => {
+        let teamData = res.data.sort((a,b) => {
+          const priorityOfA = this.teamRanksOrder.indexOf(a.rank);
+          const priorityOfB = this.teamRanksOrder.indexOf(b.rank);
+
+          return priorityOfA > priorityOfB ? 1 : -1;
+        });
+
+        this.setState({
+          teamData: teamData,
+          pageLoading: false
+        });
+
+      },err => {
+        this.setState({
+          pageLoading: false,
+          errorOnLoadingPage: true
+        });
+      });
   }
 
   getThumbnails() {
@@ -49,101 +78,74 @@ class Team extends Component {
     });
   }
 
-  getPictures() {
-    axios.get("https://ruje-test.herokuapp.com/teampic")
-    .then(res=> {
-      const newPics = res.data.map(el => {
-        return {
-          id: el.id,
-          name: el.name.split(".")[0]
-        };
-      });
-      this.setState({pictures: newPics});
-    });
-  }
+  selectTeammate(index) {
+    if(window.pageYOffset > 500)
+      window.scrollTo(0,0);
 
-  getDescriptions() {
-    axios
-      .get("https://ruje-test.herokuapp.com/teammatedesc")
-      .then(res => {
-        const newDesc = res.data.map(el => {
-          return {
-            id: el.id,
-            name: el.name.split(".")[0]
-          };
+    if(this.state.currentTeammate !== index)
+      this.setState({
+        currentTeammate: index,
+        imageLoading: true
         });
-        this.setState({ descriptions: newDesc });
-        this.loadDescription("team");
-      });
-  }
-
-  loadDescription(teammateName) {
-    const descSearchedElement = this.state.descriptions.find(p => {
-        return p.name === teammateName
-    });
-    if(!descSearchedElement) return
-    const descId = descSearchedElement.id;
-
-    axios
-      .get("https://ruje-test.herokuapp.com/articlecontent?id=" + descId)
-      .then(res => {
-        if(this.state.currentDescription !== res.data)
-            this.setState({
-              currentDescription: res.data
-            });
-      });
-  }
-
-  selectTeammate(name) {
-    this.loadDescription(name);
-    this.setState({ 
-      activeTeammate: name,
-      loadingData: "loading"
-     });
-  }
-
-  onImageLoad() {
-    this.setState({
-      loadingData: "",
-      loadingPage: ""
-    });
   }
 
   render() {
-    let thumbnails = [];
-    const picUrl = "https://drive.google.com/uc?export=view&id=";
-    let picture = [];
+    const pictureUrlPrefix = "https://drive.google.com/uc?export=view&id=";
 
-    if (this.state.pictures.length > 0) {
-      let imgId = this.state.pictures.find(p => {
-        return p.name === this.state.activeTeammate;
-      }).id;
+    let teammatesPortraits = [];
+    let latestRankDivider = "";
 
-      picture = <img src={picUrl + imgId} alt="" />;
-    }
+    this.state.teamData.forEach((teammate,index) => {
+      if(teammate.rank === "team") return;
+      
+      if(latestRankDivider !== teammate.rank) {
+        latestRankDivider = teammate.rank;
+        const displayRank = this.ranksToDisplayForm[this.teamRanksOrder.indexOf(teammate.rank)];
+        teammatesPortraits.push(
+          <div className="rank" key={teammate.rank}>{displayRank}</div>
+        );
+      }
 
-    this.state.thumbnails.forEach(t => {
-      thumbnails.push(
+      teammatesPortraits.push(
         <img
-          src={picUrl + t.id}
-          alt={t.name}
-          key={t.id}
-          onClick={() => {
-            this.selectTeammate(t.name);
-          }}
-        />
+          className={this.state.currentTeammate === index ? "selected" : ""}
+          src={pictureUrlPrefix + teammate.thumbnailId}
+          alt={teammate.name}
+          key={teammate.name}
+          onClick={() => {this.selectTeammate(index)}}/>
       );
     });
 
-    return (
-      <div className={this.state.loadingPage + " Team"}>
-        <div className="teammateBox">
-          <LoadingIcon passedClass={this.state.loadingData} />
-          <div className={this.state.loadingData + " pictureBox"} onLoad={() => {this.onImageLoad()}}>{picture}</div>
-          <div className={this.state.loadingData + " description " + this.state.activeTeammate}>{this.state.currentDescription}</div>
+    let picture = [];
+    let description = "";
+    let currentTeammateName = "";
+
+    if(this.state.teamData.length) {
+      const currentTeammate = this.state.teamData[this.state.currentTeammate];  
+      const teammatePictureUrl = pictureUrlPrefix + currentTeammate.pictureId;
+
+      picture = <img src={teammatePictureUrl} alt={"Picture of " + currentTeammate.name} />;
+      description = currentTeammate.description;
+      currentTeammateName = currentTeammate.name;
+    }
+
+    if(this.state.errorOnLoadingPage)
+      return (
+        <div className={"Team"}>
+          <h2>Niestety, ale ktoś zgrabił tę stronę</h2>
         </div>
-        <div className="teammatesIcons">{thumbnails}</div>
-      </div>
+      );
+    else
+      return (
+        <div className={"Team"}>
+          <div className={"teammateBox " + currentTeammateName}>
+            <LoadingIcon isLoading={this.state.imageLoading} />
+            <div className={this.state.imageLoading ? "pictureBox loading" : "pictureBox"} 
+              onLoad={() => {this.setState({imageLoading: false})}}>{picture}</div>
+            <div className={this.state.imageLoading ? "description loading" : "description"}>{description}</div>
+          </div>
+        <div className="teammatesIcons">{teammatesPortraits}</div>
+        </div>
     );
   }
 }

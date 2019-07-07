@@ -20,26 +20,34 @@
   justify-content: flex-start;
   background-color: #2d5281;
   width: 100%;
-  padding: 20px;
+  padding: 5px;
   box-sizing: border-box;
   z-index: 100;
 }
 .Header .floatingPart .logo {
   fill: #be9142;
-  height: 6vw;
+  height: 4vw;
+  min-height: 40px;
   font-family: DSEtienne;
   font-size: 15px;
+  letter-spacing: 0px;
   z-index: 60;
   transition: 1s ease;
 }
 .Header .backgroundPart {
-  height: 30vw;
+  height: 200px;
 }
 
 .Header.notCollapsed .logo {
-  height: 20vw;
+  height: 10vw;
+  min-height: 80px;
 }
 
+@media (max-width: 600px) {
+  .Header .backgroundPart {
+    height: 120px;
+  }
+}
 .HeaderBg {
   position: absolute;
   left: 0px;
@@ -50,7 +58,7 @@
   flex-flow: row nowrap;
   align-items: flex-end;
   justify-content: center;
-  border-bottom: 5px solid #1f1938;
+  border-bottom: 5px solid #161a33;
   z-index: 10;
 }
 .HeaderBg .current {
@@ -66,7 +74,7 @@
   transform: translateX(-100vw);
 }
 .HeaderBg svg {
-  fill: #1f1938;
+  fill: #161a33;
   height: 80%;
 }
 .HeaderBg .leftover1 {
@@ -84,7 +92,7 @@
 .HeaderBg .leftoverSpace {
   height: 3.5%;
   width: 5%;
-  background-color: #1f1938;
+  background-color: #161a33;
 }
 
 @keyframes slideIn {
@@ -306,7 +314,7 @@
   left: 0px;
   width: 100%;
   height: 100%;
-  background-color: #1f1938;
+  background-color: #161a33;
   opacity: 0.7;
   z-index: 15;
 }
@@ -597,23 +605,25 @@
 
 .Team {
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   opacity: 1;
   transition: 0.5s ease;
+  box-sizing: border-box;
 }
 .Team .teammateBox {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
   justify-content: center;
-  max-width: 90vw;
+  max-width: 500px;
 }
 .Team .teammateBox .pictureBox {
   height: 100%;
   opacity: 1;
   transition: 0.5s ease;
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
 }
 .Team .teammateBox .pictureBox img {
   max-height: 550px;
@@ -625,12 +635,15 @@
   opacity: 0;
 }
 .Team .teammateBox .description {
-  background-color: #351800;
+  flex: 1 1 auto;
+  background-color: #251508;
+  background-image: url("./svg/brownShieldsBg.svg");
+  background-size: 50px;
+  background-repeat: repeat;
   padding: 20px;
-  margin: -50px;
-  width: 350px;
-  max-width: 90vw;
-  font-size: 0.95em;
+  max-width: 400px;
+  font-size: 1em;
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
   border: 3px solid #7e5e28;
   opacity: 1;
   transform: scaleY(1);
@@ -644,39 +657,52 @@
   opacity: 0;
   transition: 0.5s ease;
 }
+.Team .teammateBox.team {
+  max-width: 100%;
+}
+.Team .teammateBox.team .description {
+  max-width: 800px;
+}
 .Team .teammatesIcons {
+  width: 400px;
   display: flex;
   flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
   max-width: 80%;
-  margin: 80px;
 }
 .Team .teammatesIcons img {
   height: 80px;
-  border-radius: 20px;
+  border-radius: 50%;
   margin: 5px;
   border: 3px solid #c49545;
-  opacity: 0.8;
   cursor: pointer;
+  filter: sepia(80%);
+  transform: scale(1);
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.3);
 }
 .Team .teammatesIcons img:hover {
   opacity: 1;
-  border: 4px solid #be9142;
-  margin: 4px;
+  filter: sepia(60%);
+  transform: scale(1.04);
+}
+.Team .teammatesIcons img.selected {
+  filter: sepia(20%);
+  transform: scale(1.09);
+  cursor: initial;
+}
+.Team .teammatesIcons .rank {
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  text-align: center;
+  font-size: 1.2em;
 }
 
 .Team.loading {
   opacity: 0;
 }
 
-@-moz-document url-prefix() {
-  .Team .teammateBox .description {
-    margin-top: -100px;
-  }
-
-  .teammatesIcons {
-    padding-top: 100px;
-  }
-}
 .FullWidthText {
   width: 90%;
   padding: 30px;
@@ -772,17 +798,17 @@
 }
 body {
   margin: 0;
-  background-color: #1f1938;
-  background-image: url("./svg/swallowBg.svg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 50%;
+  background-color: #161a33;
+  background-image: url("./svg/wavesBg.svg");
+  background-repeat: repeat;
+  background-size: 25px;
   background-position: center bottom;
   width: 100vw;
   height: 100vh;
   font-family: Vinque;
   color: #cfbb97;
   font-size: 20px;
+  letter-spacing: 1px;
   overflow-x: hidden;
 }
 

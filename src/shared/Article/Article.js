@@ -24,11 +24,12 @@ class Article extends Component {
         .then(res => {
             
             if(res) {
-                console.log(res);
+                // console.log(res);
                 let newState = {
                     imageIdList: [],
                     articleContent: {}
                 };         
+                if(res.data)
                 res.data.forEach((el) => {
                     switch (el.mimeType) {
                         case "image/jpeg":
@@ -65,7 +66,7 @@ class Article extends Component {
                     alt="Article picure"                 
                     onLoad={() => {this.onPictureLoad()}}    
                     />
-                <div className="header">{this.state.title}</div>
+                <div className="header">{this.props.articleName}</div>
                 </div>
             </div>
          );

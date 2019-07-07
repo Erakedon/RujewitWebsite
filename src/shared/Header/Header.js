@@ -17,9 +17,9 @@ class Header extends Component {
   componentDidMount = () => {
 
     document.addEventListener("scroll", (ev) => {
-      if(window.scrollY > 50 && this.state.headerNotCollapsed)
+      if(window.scrollY > 10 && this.state.headerNotCollapsed)
         this.setHeaderState(false);
-      else if(window.scrollY < 50 && !this.state.headerNotCollapsed)
+      else if(window.scrollY < 10 && !this.state.headerNotCollapsed)
         this.setHeaderState(true);
     });
 }
