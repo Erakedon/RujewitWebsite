@@ -1,8 +1,6 @@
 .Travels {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column nowrap;
     align-items: center;
-    justify-content: space-around;
-
-    
+    justify-content: flex-start;
 }

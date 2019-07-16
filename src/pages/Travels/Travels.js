@@ -2,86 +2,102 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Article from '../../shared/Article/Article';
 
-
 class Travels extends Component {
     state = { 
-        articlesList: [],
-        currentNumberOfArticles: 4
+        articlesList: []
      }
 
-     articlesPerLoad = 4;
-     currentScrollHeightCheckopint = 0;
+    articlesJSXElements = [];
+    articlesHtmlElements = [];
+    articlesElementsVisibility =[];
+    firstNotVisibleArticleElement = 0;
 
+    articlesPerQuery = 8;
+    waitingForResponse = false;
+
+    onScrollFunctionReference = {};
 
     componentDidMount() {
-        this.getArticles();
-        this.setArticleAddingEvent();
+        this.getArticles(4);
+        this.onScrollFunctionReference = () => {
+            this.checkArticlesVisibility();
+        }
+        document.addEventListener("scroll", this.onScrollFunctionReference);
     }
 
-    setArticleAddingEvent() {
-        document.addEventListener("scroll",ev => {
-            const docEl = document.documentElement;
-            console.log(docEl.scrollTop + window.innerHeight, docEl.scrollHeight);
-            const downPointOvUserView = docEl.scrollTop + window.innerHeight;
-            const downOfThePage = docEl.scrollHeight;
-            const triggerValue = 200;
+    componentWillUnmount() {
+        document.removeEventListener("scroll", this.onScrollFunctionReference);
+    }
 
-            if(downPointOvUserView > downOfThePage - triggerValue && 
-                downPointOvUserView > this.currentScrollHeightCheckopint) {
-                this.currentScrollHeightCheckopint = downOfThePage + triggerValue;
-                this.addMoreArticlesToPage();
+    componentDidUpdate() {
+        this.getArticlesElementsPosition();
+        this.checkArticlesVisibility();
+    }
+
+    checkArticlesVisibility() {
+        const scrollPosition = document.documentElement.scrollTop + window.innerHeight - 200;
+        let updateIsNeeded = false;
+
+        for (let i = this.firstNotVisibleArticleElement; 
+            i < this.articlesHtmlElements.length; 
+            i++) {
+                const pos = this.articlesHtmlElements[i].offsetTop;
+                this.articlesElementsVisibility[i] = pos < scrollPosition;
+                if(!this.articlesElementsVisibility[i]) break;//if this article is not visible, the next won't be either
+                    updateIsNeeded = true;
             }
-        });
+            if(updateIsNeeded) this.forceUpdate();
     }
 
-    addMoreArticlesToPage() {
-        console.log("addingMoreArticles");
-        // this.currentNumberOfArticles += this.articlesPerLoad;
-        this.setState({currentNumberOfArticles: this.state.currentNumberOfArticles + this.articlesPerLoad});
+    checkIfQueryForNextArticlesIsNeeded() {
+        if(this.state.articlesList.length < this.firstNotVisibleArticleElement + 2 && !this.waitingForResponse)
+            this.getArticles()
     }
 
-    getArticles() {
-        axios.get("https://ruje-test.herokuapp.com/articleslist")
+    getArticlesElementsPosition() {
+        this.articlesHtmlElements = document.querySelectorAll(".Article");
+    }
+
+    getArticles(articlesToGet) {
+        this.waitingForResponse = true;
+        const firstResultId = this.state.articlesList.length;
+        const numberOfRequestetArticles = articlesToGet || this.articlesPerQuery;
+        axios.get("https://ruje-test.herokuapp.com/articles?firstResultId=" + firstResultId 
+                    + "&amountOfResults=" + numberOfRequestetArticles)
         .then(res => {
-            console.log("Otrzymano artykuły")
-            console.log(res);
-
+            this.waitingForResponse = false;
+            let newArticlesList =  [];
+            this.state.articlesList.forEach(article => newArticlesList.push(article));
+            res.data.articles.forEach(article => newArticlesList.push(article));
 
             this.setState({
-                articlesList: res.data
-            })
-
+                articlesList: newArticlesList
+            });
+        }, err => {
+            this.waitingForResponse = false;
         });
     }
 
-    linkToArticle(articleId) {
-        // this.props.headerPropsRef.history.push(url);
-        // console.log("open article " + articleId);
-        console.log(this.props);
-        this.props.history.push(this.props.history.location.pathname + "/article?" + articleId);
-
-    }
-
-
     render() { 
-        let articles = [];
-                // this.state.articlesList.forEach((a,i) => {
-                //     if(i == 6) return;
-                // articles.push(<Article clickHandler={() => {this.linkToArticle(a.id)}} key={a.id} articleId={a.id} />)
-                // });
-            for (let i = 0; i < this.state.currentNumberOfArticles && i < this.state.articlesList.length; i++) {
-                const article = this.state.articlesList[i];
-                articles.push(<Article 
-                clickHandler={() => {this.linkToArticle(article.id)}} 
-                key={article.id} 
-                articleName={article.name}
-                articleId={article.id} />)
-                
-            }
+        for(let i = this.firstNotVisibleArticleElement; i < this.state.articlesList.length; i++) {
+
+            const article = this.state.articlesList[i];
+            const visibility = this.articlesElementsVisibility[i] ? true : false;//articlesElementsVisibility might happen to be NULL
+            
+            this.articlesJSXElements[i] = (<Article 
+                key={i}
+                id={i}
+                visible = {visibility}
+                name={article.name}
+                description={article.description ? article.description : ""}
+                images={article.images}/>);
+            if(visibility) this.firstNotVisibleArticleElement = i + 1;
+            this.checkIfQueryForNextArticlesIsNeeded();
+        }
 
         return ( 
             <div className="Travels">
-                {articles}
+                {this.articlesJSXElements}
             </div>
          );
     }
