@@ -1,72 +1,101 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import LoadingIcon from './../LoadingIcon/LoadingIcon';
 
 class Article extends Component {
     state = { 
-        imageSource: "",
-        imageIdList: [],
-        title: "",
-        loadingPage: "loading"
+        imageLoading: true,
+        currentImageIndex: 0,
+        thumbnailsVisible: false
      }
 
-    componentDidMount() {
+     thumbnailBtnTxtOnHiddenState = "Pokaż wszystkie zdjęcia";
+     thumbnailBtnTxtOnVisibleState = "Ukryj zdjęcia";
 
+     articleHtmlReference;
 
-        let imageToDownload = new Image();
-        imageToDownload.onload = () => {
-            const newState = {
-                imageSource: imageToDownload.src
-            }
-            this.setState(newState);
-        };
+     componentDidMount() {
+         this.articleHtmlReference = document.getElementById("article" + this.props.id);
+     }
 
-        axios.get("https://ruje-test.herokuapp.com/article?id=" + this.props.articleId )
-        .then(res => {
-            
-            if(res) {
-                // console.log(res);
-                let newState = {
-                    imageIdList: [],
-                    articleContent: {}
-                };         
-                if(res.data)
-                res.data.forEach((el) => {
-                    switch (el.mimeType) {
-                        case "image/jpeg":
-                            newState.imageIdList.push(el.id)
-                            break;
-                        case "application/vnd.google-apps.document":
-                            newState.title = el.name;
-                            break;
+     scrollToMainPicture() {
+      window.scrollTo(0,this.articleHtmlReference.offsetTop);
+     }
 
-                        default:
-                            break;
-                    }
-                    
-                });
-                newState.imageSource = "https://drive.google.com/uc?export=view&id=" + newState.imageIdList[0];
-                this.setState(newState);
-            }
-            imageToDownload = this.state.imageSource;
-            
-        });
+     selectImage(imageId) {
+        this.scrollToMainPicture();
 
-    }
-    
-    onPictureLoad() {
-        this.setState({loadingPage: ""})
-    }
+        if(imageId < 0) imageId = this.props.images.length - 1;
+        else if(imageId > this.props.images.length - 1) imageId = 0;
+
+        if(this.state.currentImageIndex !== imageId) 
+            this.setState({currentImageIndex: imageId, imageLoading: true})
+     }
 
     render() { 
+        const pictureUrlPrefix = "https://drive.google.com/uc?export=view&id=";
+        const thumbnailUrlPrefix = "https://drive.google.com/thumbnail?authuser=0&sz=w200&id=";
+
+        const articleDescriptionDiv = this.props.description ? 
+            (<div className="description">{this.props.description}</div>) : [];
+
+        const picture = <img src={pictureUrlPrefix + this.props.images[this.state.currentImageIndex]} alt="" />;
+
+        let thumbnails = [];
+        let thumbnailsBtn;
+
+        if(this.props.images.length > 1) {
+            const btnTxt = this.state.thumbnailsVisible ? this.thumbnailBtnTxtOnVisibleState : this.thumbnailBtnTxtOnHiddenState;
+            thumbnailsBtn = (<button onClick={() => {this.setState({thumbnailsVisible: !this.state.thumbnailsVisible})}}>{btnTxt}</button>);
+        }
+
+        if(this.state.thumbnailsVisible)
+            this.props.images.forEach((image,i) => {
+                const classname = i === this.state.currentImageIndex ? "selected" : "";
+                thumbnails.push(
+                    <img className={classname} 
+                    src={thumbnailUrlPrefix + image} alt="" key={i}
+                    onClick={() => {this.selectImage(i)}} />
+                );
+            });
+
+        
         return ( 
-            <div className={this.state.loadingPage + " Article"} onClick={this.props.clickHandler}>
-                <div className="pictureBox">
-                    {/* {this.imageEl} */}
-                    <img src={this.state.imageSource} 
-                    alt="Article picure"                 
-                    onLoad={() => {this.onPictureLoad()}}    
-                    />
-                <div className="header">{this.props.articleName}</div>
+            <div className={this.props.visible ? "Article " : "Article hidden "} id={"article" + this.props.id}>
+
+                <div className="header">
+                    <div className="shieldHalf">
+                        <div className="shieldQuater"></div>
+                        <div className="shieldQuater"></div>
+                    </div>
+                    <div className="name">{this.props.name}</div>     
+                    <div className="shieldHalf">
+                        <div className="shieldQuater"></div>
+                        <div className="shieldQuater"></div>
+                    </div>
+                </div>
+
+                <div className="content">
+                    <div className={this.state.imageLoading ? "pictureBox loading" : "pictureBox"} 
+                    onLoad={() => {this.setState({imageLoading: false})}}>
+                        <div className="navBtn" onClick={() => {this.selectImage(this.state.currentImageIndex - 1)}}>
+                            <i className="fas fa-chevron-left" />
+                        </div>
+                        {picture}
+                        <LoadingIcon isLoading={this.state.imageLoading} />
+                        <div className="navBtn" onClick={() => {this.selectImage(this.state.currentImageIndex + 1)}}>
+                            <i className="fas fa-chevron-right" />
+                        </div>
+                    </div>
+
+                    <div className="thumbnails">
+                        <div className="buttonContainer">
+                            {thumbnailsBtn}
+                        </div>
+                        {thumbnails}
+                    </div>
+
+                        {articleDescriptionDiv}
+
                 </div>
             </div>
          );
