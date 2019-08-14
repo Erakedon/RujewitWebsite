@@ -1,5 +1,4 @@
 import React from 'react';
-import { ReactComponent as NavBtns } from './navWings.svg';
 import { Component } from 'react';
 
 class Navigation extends Component {
@@ -23,42 +22,30 @@ class Navigation extends Component {
         ]
     };
 
-    componentDidMount() {
-        this.wingsReferences = document.querySelectorAll("#wing");
-
-        this.wingsReferences.forEach((w,i) => {
-            w.querySelector("text").innerHTML = this.menuContent.displayName[i];
-            w.querySelector("text").onclick = () => {this.redirectTo(this.menuContent.url[i])}; 
-        });
-    }
-
-     setNavState = (bool) => {
-        if(this.props.headerNotCollapsed) return;
-        this.setState({navOn: bool});
-    };
-
-    isNavActive() {
-        if(this.props.headerNotCollapsed) return "Nav";
-        if(this.state.navOn) return "Nav active";
-        return "Nav";
-    }
-
     redirectTo(url) {
         this.props.headerPropsRef.history.push(url);
     }
 
+    onNavBtnClick(url) {
+        this.redirectTo(url);
+        this.setState({navOn: false});
+    }
+
     render() {
         return (
-
-        <div className={this.isNavActive()}>
-            <div className="menuBtn btnOff" onClick={() => {this.setNavState(true)}}>
-                <div className="text">menu</div>
+            <div className={this.state.navOn ? "Navigation" : "Navigation hidden"}>
+                <div className="mainBtn" onClick={() => {this.setState({navOn: !this.state.navOn})}}>
+                    <div className="bar" />
+                    <div className="bar" />
+                    <div className="bar" />
+                </div>
+                <div className="navBtnsContainer">
+                    <div className="navBtn" onClick={() => this.onNavBtnClick("/")}>Strona główna</div>
+                    <div className="navBtn" onClick={() => this.onNavBtnClick("team")}>Drużyna</div>
+                    <div className="navBtn" onClick={() => this.onNavBtnClick("travels")}>Wyprawy</div>
+                    <div className="navBtn" onClick={() => this.onNavBtnClick("contact")}>Kontakt</div>
+                </div>
             </div>
-            <div className="menuBtn btnOn" onClick={() => {this.setNavState(false)}}>
-                <div className="text"><i className="fas fa-undo-alt"></i></div>
-            </div>
-            <NavBtns className="navBtns" />
-        </div>
         );
     }
 }

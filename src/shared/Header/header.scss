@@ -3,7 +3,6 @@
   background-repeat: no-repeat;
   background-size: contain;
   height: 25vw;
-  // width: 56vw;
 }
 
 .Header {
@@ -12,62 +11,47 @@
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
 
-    // background-color: rgba(255,255,255,0.2);
-    // background-color: #20160c;
-    // background-image: linear-gradient(to bottom,#383250, #383250, #383250, rgba(0,0,0,0));
-    background-color: #2d5281;
-
-
+    background-color: $header-bg-color;
     width: 100%;
-
     padding: 5px;
-
     box-sizing: border-box;
-
     z-index: 100;
         
-
     .logo {
       fill: $secondary-intense;
 
       height: 4vw;
       min-height: 40px;
       font-family: DSEtienne;
-      font-size: 15px;
+      font-size: 14px;
       letter-spacing: 0px;
-      
+      padding: 4px;
+
       z-index: 60;
 
       transition: 1s ease;
-
-      // .mainLogoText {
-      //   fill: $secondary;
-      // }
-
-      // .logoWings {
-      //   fill: $secondary;
-      // }
-
-      // text {
-      //   fill: $secondary;
-      // }
     }
 
-  }
+    .currentPageName {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      font-family: DSEtienne;
+      font-size: 5vw;
+      color: rgba(#fff, 0.5);
 
+      animation: openingAnimation 1s;
+      transition: 1s ease;
+
+      z-index: 20;
+    }
+  }
   .backgroundPart {
       height: 200px;
-    //  background-color: #383250;
-    // background-image: linear-gradient(to bottom,#383250, #383250, #383250, rgba(0,0,0,0));
-
-
   }
-
-
 }
-
 
 .Header.notCollapsed {
 
@@ -75,7 +59,9 @@
     height: 10vw;
     min-height: 80px;
   }
-
+  .currentPageName {
+    font-size: 10vw;
+  }
 }
 
 @media (max-width: 600px) {
@@ -83,6 +69,23 @@
     .backgroundPart {
       height: 120px; 
     }
+    .floatingPart {
+      .logo {
+        min-height: 50px;
+      }
+      .currentPageName {
+        font-size: 10vw;
+      }
+    }
   }
-  
+  .Header.notCollapsed {
+    .floatingPart {
+      .logo {
+        min-height: 50px;
+      }
+      .currentPageName {
+        font-size: 10vw;
+      }
+    }
+  }
 }
