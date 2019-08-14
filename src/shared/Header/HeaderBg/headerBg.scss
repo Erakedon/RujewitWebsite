@@ -17,7 +17,7 @@
     .current {
         animation: slideIn;
         animation-duration: 4s;
-        transform: translateX(0vw);
+        transform: translateX(100px);
         transform-origin: 50% 100%;
     }
 
@@ -34,8 +34,6 @@
     svg {
         fill: $bg-color;
         height: 80%;
-
-        // transition: 0.5s ease 0s;
     }
     .leftover1 {
         height: 40%;
@@ -67,10 +65,10 @@
 
 @keyframes slideIn {
     from {transform: translateX(100vw) scale(0.2)}
-    to {transform: translateX(0vw) scale(1)}
+    to {transform: translateX(100px) scale(1)}
 }
 
 @keyframes slideOut {
-    from {transform: translateX(0vw) scale(1)}
-    to {transform: translateX(-100vw) scale(2)}
+    from {transform: translateX(100px) translateY(0%) scale(1)}
+    to {transform: translateX(-100vw) translateY(-50%) scale(2)}
 }

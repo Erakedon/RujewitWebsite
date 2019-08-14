@@ -1,216 +1,110 @@
-$nav-fill-color: $primary;
-$nav-stroke-color: darken($secondary-dark, 5%);
-$nav-stroke-width: 3;
+.Navigation {
+    position: fixed;
+    top: -20px;
+    right: 5px;
 
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-end;
+    justify-content: center;
 
-.Nav {
-    position: absolute;
-    right: 0px;
-    top: 0px;
-
-    width: 110px;
-    height: 110px;
-
+    transition: 0.2s;
 
     z-index: 100;
-    .menuBtn {
-        position: absolute;
-        top: 0px;
-        right: 0px;
-
+    .mainBtn {
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: center;
 
-        width: 95px;
-        height: 95px;
+        background-color: darken($header-bg-color, 5);
+        border: 3px solid $secondary-dark;
+        margin: 0px;
+        width: 94px;
+        height: 94px;
 
-        border-bottom-left-radius: 100%;
-
+        border-radius: 50px;
         cursor: pointer;
-        transform-origin: 100% 0%;
-        transition: 0.3s ease-in-out;
-
-        z-index: 20;
-
-        .text {
-
-            font-family: Vinque;
-            color: $secondary;
-            font-size: 1.3em;
-
-            margin-top: 25%;
-
-            transform: rotateZ(45deg) translate(10px, -10px);
-            // transform: translate(15px, -10px);
-        }
-    }
-
-    .menuBtn.btnOn {
-        background-color: $nav-fill-color;
-        border: ($nav-stroke-width + px) solid $nav-stroke-color;
-        .text {
-            // font-size: 3em;
-        }
-
-        transform: rotateZ(90deg);
-    }
-
-    .menuBtn.btnOff {
-        background-color: darken($secondary, 5%);
-        border: ($nav-stroke-width + px) solid $nav-fill-color;
-        .text {
-            color: $nav-fill-color;
-        }
-
-        transform: rotateZ(0deg);
-    }
-
-    .navBtns {
-        position: absolute;
-        top: -10%;
-        right: -10%;
-
-        fill: $nav-fill-color;
-
-        height: 280%;
-
-        transform-origin: 0px 0px;
-
-        transition: 0.5s ease-in-out;
-
+        transition: 0.5s;
         z-index: 10;
 
-        #wing {
+        .bar {
+            width: 30px;
+            height: 3px;
+            margin: 3.2px;
 
-
-            transform: rotateZ(-90deg);
-
-            // transform-origin: 135px 115px;
-            // transform-origin: 135px 115px;
-            transform-origin: 100% 0%;
-            transition: 0.5s ease-in-out;   
-            cursor: pointer; 
-            
-            z-index: 10;
-        }
-
-        path {
-            stroke: $nav-stroke-color;
-            stroke-width: ($nav-stroke-width * 0.11 );
-        }
-
-        text {
-           fill: $secondary;
-           font-size: 2.3px;
-           
-        }
-
-        #wing:nth-of-type(1) text {transform: rotate(2.5deg);}
-        #wing:nth-of-type(2) text {transform: rotate(2deg);}
-        #wing:nth-of-type(3) text {transform: rotate(0deg);}
-        #wing:nth-of-type(4) text {transform: rotate(-3deg);}
-        
-        #wing:nth-of-type(1) {transition-delay: 0.15s}
-        #wing:nth-of-type(2) {transition-delay: 0.1s}
-        #wing:nth-of-type(3) {transition-delay: 0.05s}
-        #wing:nth-of-type(4) {transition-delay: 0s}
-
-    }
-
-    
-
-}
-
-.Nav.active, .notCollapsed .Nav {
-
-    .navBtns {
-        // transform: rotateZ(0deg);
-
-        #wing {
-            transform: rotateZ(-2deg);
-            // transform: rotate(0deg);
-        }
-
-        #wing:hover {
-            transform: rotateZ(-1deg) scale(1.05);
-            z-index: 15;
-            transition: 0.1s ease-out 0s;
-        }
-
-        #wing:nth-of-type(1) {transition-delay: 0s}
-        #wing:nth-of-type(2) {transition-delay: 0.05s}
-        #wing:nth-of-type(3) {transition-delay: 0.1s}
-        #wing:nth-of-type(4) {transition-delay: 0.15s}
-    }
-}
-
-.Nav.active {
-
-    .menuBtn.btnOff {
-        transform: rotateZ(-90deg);
-    }    
-    .menuBtn.btnOn {
-        transform: rotateZ(0deg);
-    }
-
-}
-
-
-@media (max-width: 600px) {
-
-    .Nav {
-
-        width: 75px;
-        height: 75px;
-        transform: translateY(25%) scale(1.5);
-
-        .menuBtn {
-
-            width: 65px;
-            height: 65px;
-
-
-            .text {
-                font-size: 1em;
-                transform: rotateZ(45deg) translate(5px, -5px);
-            }
-        }
-
-        .navBtns {
-            // transform: scaleY(1.4);
+            background-color: #ddd;
         }
     }
 
-    .notCollapsed .Nav {
+    .navBtnsContainer {
 
-        .navBtns {    
-            #wing {
-                transform: rotateZ(-90deg);
+        .navBtn {
+            position: relative;
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+            font-size: 0.9em;
+            margin-top: 5px;
+
+            width: 94px;
+            height: 94px;
+            border-radius: 50px;
+            border: 3px solid $secondary-dark;
+            cursor: pointer;
+
+            transform: translateX(0px) rotateZ(0deg);
+            transition: 0.3s ease-in-out;
+        }
+
+        @for $i from 1 through 5 {
+            .navBtn:nth-of-type(#{$i}) {
+                transition-delay: 0.12 * $i + s;
+                z-index: 10 - $i * 2;
             }
         }
     }
 
-    .Nav.active, .Nav {
-
-        .navBtns {    
-            #wing {
-                transform: translateX(200px) rotateZ(-90deg);
-            }
-
-        }
+    .mainBtn,
+    .navBtnsContainer > .navBtn {
+        box-shadow: 2px 2px 10px 0px rgba(#000000, 0.3);
+        background-color: darken($header-bg-color, 5);
     }
 
-    .Nav.active {
+    .mainBtn:hover,
+    .navBtnsContainer > .navBtn:hover {
+        background-color: darken($header-bg-color, 10);
+        transition-delay: 0s;
+    }
+}
 
-        .menuBtn.btnOff {
-            transform: rotateZ(0deg);
-        }    
-        .menuBtn.btnOn {
-            transform: rotateZ(90deg);
-        }
-    
+.Navigation.hidden {
+    top: -20px;
+    right: -20px;
+
+    .mainBtn {
+        background-color: rgba(0,0,0,0);
+        border: 0px solid $secondary-dark;
+        margin: 3px;
+        box-shadow: 0px 0px 0px 0px rgba(#000000, 0.3);
     }
 
+    .mainBtn:hover {
+        box-shadow: 1px 1px 12px 0px rgba(#000000, 0.3);
+        background-color: darken($header-bg-color, 1);
+    }
+
+    .mainBtn:active {
+        background-color: rgba(0,0,0,0);
+    }
+
+    .navBtnsContainer {
+        height: 0px;
+        .navBtn {
+            transform: translateX(200px) rotateZ(180deg);
+        }
+    }
 }

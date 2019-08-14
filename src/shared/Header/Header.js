@@ -14,6 +14,12 @@ class Header extends Component {
   previousPage = "";
   currentPage = "none";
 
+  pageNameToDisplayName = {
+    team: "Drużyna",
+    travels: "Wyprawy",
+    contact: "Kontakt"
+  }
+
   componentDidMount = () => {
 
     document.addEventListener("scroll", (ev) => {
@@ -22,7 +28,7 @@ class Header extends Component {
       else if(window.scrollY < 10 && !this.state.headerNotCollapsed)
         this.setHeaderState(true);
     });
-}
+  }
 
   setHeaderState = (bool) => {
     this.setState({headerNotCollapsed: bool});
@@ -49,17 +55,18 @@ class Header extends Component {
       this.currentPage = this.props.history.location.pathname.split("/")[1];
     }
 
-  let previousHeaderBg = [];
-  let currentHeaderBg = []
+    let previousHeaderBg = [];
+    let currentHeaderBg = []
 
-  previousHeaderBg.push(this.getCorrespondingSvg(this.previousPage,"previous"));
-  currentHeaderBg.push(this.getCorrespondingSvg(this.currentPage,"current"));
+    previousHeaderBg.push(this.getCorrespondingSvg(this.previousPage,"previous"));
+    currentHeaderBg.push(this.getCorrespondingSvg(this.currentPage,"current"));
 
     return (
       <div className={this.state.headerNotCollapsed ? "Header notCollapsed" : "Header"}>
         <div className="floatingPart">
           <Logo className="logo" />
-          <Navigation headerPropsRef={this.props} headerNotCollapsed={this.state.headerNotCollapsed} />
+          <div className="currentPageName" key={this.currentPage}>{this.pageNameToDisplayName[this.currentPage]}</div>
+          <Navigation headerPropsRef={this.props} />
           <HeaderBg>{previousHeaderBg}</HeaderBg>
           <HeaderBg>{currentHeaderBg}</HeaderBg>
         </div>
