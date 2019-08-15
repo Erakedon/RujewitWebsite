@@ -25,7 +25,6 @@
         transition: 0.5s;
         z-index: 60;
 
-
         .name {
             display: flex;
             flex-flow: column;
@@ -243,32 +242,17 @@
             transition: 0.5s ease-in-out 1.5s;
         }
     }
-    
-    // .content {
-
-    //     .pictureBox,
-    //     .description {
-    //         opacity: 1;
-    //         transition: 0.5s ease-in-out 1.5s;
-    //     }
-    // }
 }
 
 .Article.hidden {
-    // opacity: 0;
     .header {
         color: rgba(#000, 0);
         transform: rotate(180deg);
         min-width: 100px;
-        // max-width: 100px;
 
         .name {
-            // flex: 1 1 0px;
             max-width: 0vw;
             font-size: 0em;
-            
-            // padding-left: 0px;
-            // padding-right: 0px;
         }
 
     }

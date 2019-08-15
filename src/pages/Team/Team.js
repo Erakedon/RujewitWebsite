@@ -79,7 +79,7 @@ class Team extends Component {
   }
 
   selectTeammate(index) {
-    if(window.pageYOffset > 500)
+    if(window.innerWidth < 600)
       window.scrollTo(0,0);
 
     if(this.state.currentTeammate !== index)
