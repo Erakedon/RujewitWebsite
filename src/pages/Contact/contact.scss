@@ -1,7 +1,29 @@
 .Contact {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
 
-    .disc {
-        color: $secondary;
-        font-weight: 800;
+    height: 300px;
+
+    .singleInfo {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: center;
+
+        box-sizing: border-box;
+        margin-top: 3px;
+        
+        font-size: 1.2em;
+
+        .name {
+            font-weight: 700;
+            margin-right: 10px;
+        }
+        .data {
+            color: $text-color;
+            text-decoration: none;
+        }
     }
 }
