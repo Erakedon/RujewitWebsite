@@ -13,7 +13,6 @@
 
     z-index: 10;
 
-
     .current {
         animation: slideIn;
         animation-duration: 4s;
@@ -28,40 +27,11 @@
         transform: translateX(-100vw);
     }
 
-
-
-
     svg {
         fill: $bg-color;
         height: 80%;
     }
-    .leftover1 {
-        height: 40%;
-    }
-    .leftover2 {
-        height: 80%;
-    }
-    .leftover3 {
-        height: 15%;
-    }
-    .leftover4 {
-        height: 65%;
-    }
-
-    .leftoverSpace {
-        height: 3.5%;
-        width: 5%;
-        background-color: $bg-color;
-
-    }
-
 }
-
-// .notCollapsed .HeaderBg {
-//   svg {
-//     height: 40px;
-//   }
-// }
 
 @keyframes slideIn {
     from {transform: translateX(100vw) scale(0.2)}
