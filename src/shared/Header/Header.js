@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { ReactComponent as Logo } from "./logo.svg";
 import Navigation from "../Navigation/Navigation";
 import HeaderBg from "./HeaderBg/HeaderBg";
-import { ReactComponent as MainPageSvg } from './HeaderBg/swallow3.svg';
 import { ReactComponent as TravelsSvg } from './HeaderBg/drakkar.svg';
 import { ReactComponent as TeamSvg } from './HeaderBg/team.svg';
 
@@ -44,7 +43,7 @@ class Header extends Component {
       case "none":
       return(<div key={id}></div>)
       default:
-      return (<MainPageSvg key={id} className={type} />);
+      return (<div key={id} className={type} />);
     }
   }
 
